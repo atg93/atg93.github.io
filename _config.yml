@@ -1,0 +1,97 @@
+# GitHub Pages Configuration for TopoBDA
+
+# Site settings
+title: "TaCarla"
+description: "TaCarla: A comprehensive benchmarking dataset for end-to-end autonomous driving"
+author: "TaCarla Research Team"
+email: ""
+baseurl: ""
+url: "https://atg93.github.io/TaCarla.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# GitHub Pages settings
+repository: atg93/TaCarla.github.io
+github_username: atg93
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# SEO settings
+lang: en_US
+keywords: 
+  - "TaCarla Dataset"
+  - "Carla Leaderboard 2.0"
+  - "3D object detection"
+  - "topology-aware attention"
+  - "bird's eye view"
+  - "autonomous driving"
+  - "multi-view detection"
+  - "computer vision"
+  - "deep learning"
+  - "Planning"
+  - "Prediction"
+  - "Visual Language Model"
+
+# Social media
+twitter:
+  username: ""
+  card: summary_large_image
+
+# Google Analytics (add your tracking ID if needed)
+# google_analytics: ""
+
+# Include/Exclude files
+include:
+  - _pages
+  - images
+  - "*.pdf"
+  - "*.html"
+  - "*.css"
+  - "*.js"
+
+exclude:
+  - vendor
+  - .bundle
+  - .sass-cache
+  - .jekyll-cache
+  - gemfiles
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Collections
+collections:
+  pages:
+    output: true
+    permalink: /:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Custom variables
+research:
+  title: "TaCarla"
+  subtitle: "TaCarla: A comprehensive benchmarking dataset for end-to-end autonomous driving"
+  keywords: "Carla Dataset, Leaderboard2.0, 3D object detection, Prediction, Planning, Lane Detection, Visual Language Model, autonomous driving"
+  year: 2025
