@@ -15,8 +15,29 @@
 </head>
 <body>
   <header>
-    <h1>TaCarla</h1>
-    <p>Dataset + benchmark for autonomous driving research.</p>
+    <h1>TaCarla: A comprehensive benchmarking dataset for end-to-end autonomous driving</h1>
+    <p>Collecting a high-quality dataset is a critical task that demands meticulous attention
+to detail, as overlooking certain aspects can render the entire dataset unusable.
+Autonomous driving challenges remain a prominent area of research, requiring
+further exploration to enhance the perception and planning performance of vehicles.
+However, existing datasets are often incomplete. For instance, datasets that include
+perception information generally lack planning data, while planning datasets typi-
+cally consist of extensive driving sequences where the ego vehicle predominantly
+drives forward, offering limited behavioral diversity. The CARLA Leaderboard 2.0
+challenge, providing a diverse set of scenarios to address the long-tail problem in
+autonomous driving, has emerged as a valuable alternative platform for developing
+perception and planning models. Nevertheless, existing datasets collected on this
+platform present certain limitations. Some datasets appear to be tailored primarily
+for limited sensor configuration, with particular sensor configurations. Additionally,
+in some datasets, the expert policies used for data collection exhibit suboptimal
+driving behaviors, such as oscillations. To support end-to-end autonomous driving
+research, we have collected a new dataset comprising over 2.85 million frames
+using the CARLA simulation environment for the diverse Leaderboard 2.0 chal-
+lenge scenarios, making it the largest dataset in the literature to the best of our
+knowledge. Our dataset is designed not only for planning tasks but also supports
+dynamic object detection, lane divider detection, centerline detection, traffic light
+recognition, and prediction tasks. Furthermore, we demonstrate its versatility by
+training various models using our dataset..</p>
     <nav>
       <a href="#overview">Overview</a>
       <a href="#download">Download</a>
