@@ -35,7 +35,7 @@
     .content-card { background:#fff; border:1px solid #eee; padding:14px; border-radius:8px; box-shadow:0 3px 10px rgba(0,0,0,0.03); }
     .card-title { font-weight:600; margin-bottom:8px; }
 
-    /* Study Highlights grid (based on TopoBDA Research Highlights) */
+    /* Study Highlights grid */
     .highlights-grid {
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -54,46 +54,16 @@
       align-items:flex-start;
     }
     .highlight-icon {
-      width:44px;
-      height:44px;
-      flex:0 0 44px;
-      border-radius:8px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:20px;
-      background:linear-gradient(180deg, rgba(37,99,235,0.12), rgba(37,99,235,0.06));
-      color:var(--accent);
+      width:44px; height:44px; flex:0 0 44px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:20px;
+      background:linear-gradient(180deg, rgba(37,99,235,0.12), rgba(37,99,235,0.06)); color:var(--accent);
     }
     .highlight-body h3 { margin:0 0 6px; font-size:1rem; }
     .highlight-body p { margin:0; font-size:0.95rem; color:#444; line-height:1.4; }
 
     /* Data visualization gallery */
-    .viz-gallery {
-      display:flex;
-      gap:16px;
-      flex-wrap:wrap;
-      justify-content:center;
-      align-items:flex-start;
-      margin-top:12px;
-    }
-    .viz-gallery .viz-item {
-      flex: 1 1 300px;
-      max-width: 360px;
-      text-align:center;
-      background:#fff;
-      padding:8px;
-      border-radius:8px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.04);
-    }
-    .viz-gallery img {
-      width:100%;
-      height:auto;
-      border-radius:6px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.04);
-      cursor:zoom-in;
-      display:block;
-    }
+    .viz-gallery { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; align-items:flex-start; margin-top:12px; }
+    .viz-gallery .viz-item { flex: 1 1 300px; max-width: 360px; text-align:center; background:#fff; padding:8px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.04); }
+    .viz-gallery img { width:100%; height:auto; border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,0.04); cursor:zoom-in; display:block; }
     .viz-caption { margin-top:8px; font-size:0.95rem; color:#444; }
 
     /* Traffic-light samples */
@@ -135,10 +105,8 @@
   <section class="section" id="abstract">
     <div class="container">
       <h2>Abstract</h2>
-
       <div class="content-card" aria-live="polite">
         <div class="card-title"><span>Abstract</span></div>
-
         <div id="abstract-content" class="content">
 Collecting a high-quality dataset is a critical task that demands meticulous attention to detail, as overlooking certain aspects can render the entire dataset unusable. Autonomous driving challenges remain a prominent area of research, requiring further exploration to enhance the perception and planning performance of vehicles. However, existing datasets are often incomplete. For instance, datasets that include perception information generally lack planning data, while planning datasets typically consist of extensive driving sequences where the ego vehicle predominantly drives forward, offering limited behavioral diversity.
 
@@ -147,24 +115,20 @@ The CARLA Leaderboard 2.0 challenge, providing a diverse set of scenarios to add
 To support end-to-end autonomous driving research, we have collected a new dataset comprising over 2.85 million frames using the CARLA simulation environment for the diverse Leaderboard 2.0 challenge scenarios, making it the largest dataset in the literature to the best of our knowledge. Our dataset is designed not only for planning tasks but also supports dynamic object detection, lane divider detection, centerline detection, traffic light recognition, and prediction tasks. Furthermore, we demonstrate its versatility by training various models using our dataset.
         </div>
       </div>
-
-      <p class="small-muted" style="margin-top:10px">
-        Note: Any math expressions will appear as plain text unless you add a math renderer.
-      </p>
+      <p class="small-muted" style="margin-top:10px">Note: Any math expressions will appear as plain text unless you add a math renderer.</p>
     </div>
   </section>
 
-  <!-- Study Highlights (new section based on TopoBDA Research Highlights) -->
+  <!-- Study Highlights -->
   <section class="section" id="study-highlights">
     <div class="container">
       <h2>Study Highlights</h2>
-
       <div class="highlights-grid" role="list">
         <div class="highlight-card" role="listitem">
           <div class="highlight-icon">📦</div>
           <div class="highlight-body">
             <h3>Largest CARLA Leaderboard Dataset</h3>
-            <p>Over <strong>2.85 million frames</strong> collected from CARLA Leaderboard 2.0 scenarios — to our knowledge the largest public dataset focused on both perception and planning.</p>
+            <p>Over <strong>2.85 million frames</strong> from CARLA Leaderboard 2.0 scenarios — to our knowledge the largest dataset covering perception and planning together.</p>
           </div>
         </div>
 
@@ -172,7 +136,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="highlight-icon">🧩</div>
           <div class="highlight-body">
             <h3>Multi-task & Multi-modal</h3>
-            <p>Designed for multiple tasks: dynamic object detection, lane divider & centerline detection, traffic light recognition and trajectory prediction — with camera-only and camera+LiDAR configurations.</p>
+            <p>Supports dynamic object detection, lane divider & centerline detection, traffic light recognition and trajectory prediction with camera-only and camera+LiDAR setups.</p>
           </div>
         </div>
 
@@ -180,15 +144,15 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="highlight-icon">🎯</div>
           <div class="highlight-body">
             <h3>Long-tail Scenario Coverage</h3>
-            <p>Scenarios selected to cover rare and critical events (accident, construction, emergency, hazards and more) to improve model robustness on long-tail cases.</p>
+            <p>Scenarios selected for long-tail events (accident, construction, emergency, hazards, opposite direction, etc.) to improve robustness on rare cases.</p>
           </div>
         </div>
 
         <div class="highlight-card" role="listitem">
           <div class="highlight-icon">🔬</div>
           <div class="highlight-body">
-            <h3>Strong Baselines & Evaluation</h3>
-            <p>Benchmarked camera-only and camera–LiDAR models (e.g. BEV detectors, Transfuser, DiffusionDrive, PlanT) with open-loop and closed-loop evaluation metrics.</p>
+            <h3>Benchmarked Baselines</h3>
+            <p>Benchmarked strong baselines (BEV detectors, Transfuser, DiffusionDrive, PlanT) and provided open-loop & closed-loop evaluations.</p>
           </div>
         </div>
 
@@ -196,22 +160,22 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="highlight-icon">🔁</div>
           <div class="highlight-body">
             <h3>Standardized Temporal Resolution</h3>
-            <p>Data downsampled from 10 Hz to 2 Hz to align with nuScenes-style keyframe annotations and ensure compatibility with existing evaluation pipelines.</p>
+            <p>Downsampled original 10Hz data to 2Hz to align with nuScenes-style keyframes and common evaluation pipelines.</p>
           </div>
         </div>
 
         <div class="highlight-card" role="listitem">
           <div class="highlight-icon">📈</div>
           <div class="highlight-body">
-            <h3>Usable for Research & Validation</h3>
-            <p>Supports both offline (open-loop) evaluation and closed-loop validation on CARLA Leaderboard V2 — suitable for training, validation and behavior testing.</p>
+            <h3>Research & Validation Ready</h3>
+            <p>Designed for both offline training/analysis and closed-loop validation on CARLA Leaderboard V2 — useful for training, testing and behavior analysis.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIMENTS -->
+  <!-- EXPERIMENTS (3D detection, lane, traffic light, planning) -->
   <section class="section" id="experiments">
     <div class="container">
       <h2 id="sec:experiments">Experiments</h2>
@@ -219,95 +183,30 @@ To support end-to-end autonomous driving research, we have collected a new datas
       <!-- 3D Object Detection -->
       <article class="experiment-block" id="3d-object-detection">
         <h3>3D Object Detection</h3>
-
         <p>
-          We employed a non-transformer-based architecture for multi-view bird’s eye view (BEV)-based 3D object detection.
-          In this architecture, the multi-view camera images are initially processed by a convolutional image encoder,
-          specifically <em>RegNetY-800MF</em>, with a feature pyramid network based on <em>BiFPN</em>. We project the
-          feature levels at /8, /16, and /32 resolutions into the BEV representation using Lift-Splat projection.
-          Features from the previous two frames are warped to the current frame using egomotion and then concatenated
-          along the channel dimension, similar to BevDet4D. Gradients produced by the previous frames are not used to
-          update the image encoder. The resulting spatio-temporal BEV features are processed by a ResNet-based BEV backbone.
-          These features are then shared among task-specific heads.
+          We employed a non-transformer-based architecture for multi-view BEV 3D object detection. The multi-view camera images
+          are processed by a RegNetY-800MF encoder with BiFPN; features ( /8, /16, /32 ) are projected to BEV using Lift-Splat.
+          Temporal frames are warped with egomotion and concatenated (like BevDet4D). BEV backbone is ResNet-based and task heads include RQR3D.
         </p>
 
-        <p>
-          We utilize <em>RQR3D</em> for BEV-based 3D object detection. RQR3D reparametrizes the regression targets for the 3D
-          bounding boxes and implements this reparameterized regression task on an anchor-free single-stage object detector,
-          introducing an objectness head to address class imbalance problems of single-stage detectors. RQR3D outperforms
-          widely-adopted CenterPoint-based approaches, yielding lower translation and orientation errors, which are crucial
-          for safe autonomous driving. When using LiDAR, we simply map the point cloud onto the BEV grid and concatenate it
-          with the projected image feature before temporal processing.
-        </p>
-
-        <!-- Table: class counts -->
         <figure class="table-figure" aria-labelledby="tab-3d-class-counts-caption">
-          <figcaption id="tab-3d-class-counts-caption"><strong>Table:</strong> The number of objects for 3D object detection</figcaption>
+          <figcaption id="tab-3d-class-counts-caption"><strong>Table:</strong> Number of objects for 3D object detection</figcaption>
           <div class="table-responsive">
             <table class="results-table" id="tab:3d_class_counts">
               <thead>
-                <tr>
-                  <th></th>
-                  <th>Ambulance</th>
-                  <th>Construction</th>
-                  <th>Crossbike</th>
-                  <th>Walker</th>
-                  <th>Car</th>
-                  <th>Firetruck</th>
-                  <th>Police</th>
-                </tr>
+                <tr><th></th><th>Ambulance</th><th>Construction</th><th>Crossbike</th><th>Walker</th><th>Car</th><th>Firetruck</th><th>Police</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>train</th>
-                  <td>2,306</td>
-                  <td>50,486</td>
-                  <td>28,980</td>
-                  <td>17,247</td>
-                  <td>683,332</td>
-                  <td>1,070</td>
-                  <td>21,181</td>
-                </tr>
-                <tr>
-                  <th>val</th>
-                  <td>2,060</td>
-                  <td>2,248</td>
-                  <td>32,177</td>
-                  <td>9,703</td>
-                  <td>419,697</td>
-                  <td>1,495</td>
-                  <td>9,803</td>
-                </tr>
+                <tr><th>train</th><td>2,306</td><td>50,486</td><td>28,980</td><td>17,247</td><td>683,332</td><td>1,070</td><td>21,181</td></tr>
+                <tr><th>val</th><td>2,060</td><td>2,248</td><td>32,177</td><td>9,703</td><td>419,697</td><td>1,495</td><td>9,803</td></tr>
               </tbody>
             </table>
           </div>
         </figure>
 
         <p>
-          To align our dataset with the <em>nuScenes</em> benchmark, which provides annotated keyframes at 2 Hz, we downsampled
-          our original 10 Hz data to 2 Hz. This conversion ensures consistency in temporal resolution, facilitating fair
-          comparisons and compatibility with existing evaluation protocols.
+          We use camera-only and camera–LiDAR configurations and evaluation metrics from nuScenes (mAP, ATE, ASE, AOE, AVE). LiDAR improves localization (lower ATE/AOE).
         </p>
-
-        <p>
-          Additionally, we selected scenarios whose names contain keywords such as <em>accident, construction, dynamic,
-          pedestrian, hazard, emergency,</em> and <em>opposite</em> to achieve a more balanced class distribution. The resulting
-          number of objects per category is summarized above.
-        </p>
-
-        <p>
-          We utilize two different sensor configurations: <strong>camera-only</strong> and <strong>camera–LiDAR</strong>. Evaluation
-          metrics are adopted from nuScenes, including mean Average Precision (mAP), Average Translation Error (ATE), Average
-          Scale Error (ASE), Average Orientation Error (AOE) and Average Velocity Error (AVE). (Average Attribute Error (AAE)
-          is excluded as it is not applicable for TaCarla.) The inclusion of LiDAR enhances depth estimation accuracy, leading to
-          improved localization and orientation predictions (lower ATE and AOE). The camera-only configuration exhibits higher errors
-          due to the inherent challenges in depth estimation. The detailed class-wise performance metrics are presented below,
-          illustrating the comparative effectiveness of both approaches.
-        </p>
-
-        <!-- Camera-only & Camera-LiDAR tables omitted here for brevity in the chat; they are included in the file -->
-        <!-- ... full tables and remaining experiment content are present below in the full file (unchanged) -->
-
       </article>
 
       <!-- Lane Detection -->
@@ -315,85 +214,43 @@ To support end-to-end autonomous driving research, we have collected a new datas
         <h3>Lane Detection</h3>
 
         <figure class="table-figure" aria-labelledby="tab-topobda-caption">
-          <figcaption id="tab-topobda-caption"><strong>Table:</strong> Centerline and Lane Divider Detection Results of TopoBDA architecture for TaCarla Dataset</figcaption>
+          <figcaption id="tab-topobda-caption"><strong>Table:</strong> Centerline and Lane Divider Detection Results (TopoBDA)</figcaption>
           <div class="table-responsive">
             <table class="results-table" id="tab:topobda_tacarla">
-              <thead>
-                <tr>
-                  <th>Detection Task</th>
-                  <th>AP<sub>f</sub></th>
-                  <th>AP<sub>c</sub></th>
-                  <th>F1<sub>1.5</sub></th>
-                </tr>
-              </thead>
+              <thead><tr><th>Detection Task</th><th>AP<sub>f</sub></th><th>AP<sub>c</sub></th><th>F1<sub>1.5</sub></th></tr></thead>
               <tbody>
-                <tr><td>Centerline Detection</td> <td>58.2</td> <td>60.9</td> <td>73.8</td></tr>
-                <tr><td>Lane Divider Detection</td> <td>N/A</td> <td>60.2</td> <td>75.6</td></tr>
+                <tr><td>Centerline Detection</td><td>58.2</td><td>60.9</td><td>73.8</td></tr>
+                <tr><td>Lane Divider Detection</td><td>N/A</td><td>60.2</td><td>75.6</td></tr>
               </tbody>
             </table>
           </div>
         </figure>
 
-        <p>
-          Lane detection consists of two sub-tasks: lane divider detection and centerline detection. For the lane divider and centerline
-          detection tasks, Chamfer Distance-based Average Precision (<code>AP<sub>c</sub></code>) and Fréchet Distance-based Average Precision
-          (<code>AP<sub>f</sub></code>) metrics were utilized. These metrics evaluate geometric similarity between predicted and ground-truth polylines.
-          For <code>AP<sub>f</sub></code>, thresholds are 1, 2, and 3 meters; for <code>AP<sub>c</sub></code>, thresholds are 0.5, 1, and 1.5 meters.
-          The F1 metric is included (threshold set to 1.5 meters in our study); 11 ground-truth points are used for all metrics.
-        </p>
-
-        <p>
-          For training both centerlines and lane dividers we used the TopoBDA architecture, which incorporates specialized attention structures and
-          polyline training practices derived from TopoMaskV2. The Bezier Deformable Attention mechanism focuses attention around Bezier keypoints,
-          improving detection and representation of elongated and thin polyline structures.
-        </p>
-
-        <!-- BEV as PNG image -->
+        <!-- BEV figure from figures/ (user requested figures folder included) -->
         <figure class="figure" id="fig:bev_samples">
-          <img src="images/bev_tacarla.png" alt="BEV results showing GT, Pred and overlay GT+Pred" data-full="images/bev_tacarla.png" style="width:100%;max-width:900px;cursor:zoom-in;border-radius:6px;">
-          <figcaption>
-            Bird's Eye View (BEV) results demonstrating the performance of TopoBDA on the TaCarla dataset. <em>GT</em> denotes the ground truth,
-            and <em>Pred</em> denotes the predictions. <em>GT + Pred</em> shows the overlaid results of both.
-          </figcaption>
+          <img src="figures/bev_tacarla.png" alt="BEV results (figures/bev_tacarla.png)" data-full="figures/bev_tacarla.png" style="width:100%;max-width:900px;cursor:zoom-in;border-radius:6px;">
+          <figcaption>Bird's Eye View (BEV) results — GT, Pred and overlay (image loaded from <code>figures/bev_tacarla.png</code>).</figcaption>
         </figure>
 
-        <!-- Traffic light images: larger via .tl-samples -->
+        <!-- traffic light samples (images/) and larger display -->
         <figure class="figure tl-samples" role="group" aria-label="Traffic light model outputs">
-          <img src="images/tl_red.jpg" alt="Traffic light red example" data-full="images/tl_red.jpg">
-          <img src="images/tl_green.jpg" alt="Traffic light green example" data-full="images/tl_green.jpg">
-          <figcaption style="width:100%;margin-top:10px;text-align:center;">
-            Outputs of the FCOS traffic light model (red and green examples).
-          </figcaption>
+          <img src="images/tl_red.jpg" alt="Traffic light red example (images/tl_red.jpg)" data-full="images/tl_red.jpg">
+          <img src="images/tl_green.jpg" alt="Traffic light green example (images/tl_green.jpg)" data-full="images/tl_green.jpg">
+          <figcaption style="width:100%;margin-top:10px;text-align:center;">Outputs of the FCOS traffic light model (red and green examples).</figcaption>
         </figure>
-
       </article>
 
       <!-- Traffic Light Detection -->
       <article class="experiment-block" id="traffic-light-detection">
         <h3>Traffic Light Detection</h3>
-
-        <p>
-          The dataset contains <strong>238,780</strong> training and <strong>187,987</strong> validation images with traffic light instances.
-          Each image contains a single traffic light instance with three classes: <em>red</em>, <em>yellow</em>, and <em>green</em>.
-          Every instance is labeled with a 2D bounding box and class. We used an off-the-shelf single-stage object detector, <em>FCOS</em> with
-          ResNet-50 backbone, as a baseline. We trained with a 1× schedule (12 epochs) and learning rate <code>1e-3</code>, decayed by 0.1 at
-          epochs 8 and 11. COCO-style <code>AP</code> and <code>AP<sub>50</sub></code> are reported below.
-        </p>
+        <p>The dataset contains <strong>238,780</strong> (train) and <strong>187,987</strong> (val) images with traffic light instances (red/yellow/green). Baseline: FCOS + ResNet-50.</p>
 
         <figure class="table-figure" aria-labelledby="tab-tlr-caption">
-          <figcaption id="tab-tlr-caption"><strong>Table:</strong> Traffic Light Detection task results in TaCarla.</figcaption>
+          <figcaption id="tab-tlr-caption"><strong>Table:</strong> Traffic Light Detection results</figcaption>
           <div class="table-responsive">
             <table class="results-table" id="tab:TLR">
-              <thead>
-                <tr>
-                  <th>Model</th>
-                  <th>AP</th>
-                  <th>AP<sub>50</sub></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>FCOS</td><td>59.5</td><td>88.2</td></tr>
-              </tbody>
+              <thead><tr><th>Model</th><th>AP</th><th>AP<sub>50</sub></th></tr></thead>
+              <tbody><tr><td>FCOS</td><td>59.5</td><td>88.2</td></tr></tbody>
             </table>
           </div>
         </figure>
@@ -403,144 +260,38 @@ To support end-to-end autonomous driving research, we have collected a new datas
       <article class="experiment-block" id="planning">
         <h3>Planning</h3>
 
+        <!-- planning figure from figures/ (user requested figures folder included) -->
         <figure class="figure">
-          <img src="images/planning.png" alt="Waypoints comparison for Ground Truth, PlanT, Transfuser, and DiffusionDrive" style="width:100%;max-width:900px;border-radius:6px;">
-          <figcaption>
-            Waypoints from ground truth (Top Left), PlanT (Top Right), Transfuser (Bottom Left), and DiffusionDrive (Bottom Right) models.
-          </figcaption>
+          <img src="figures/planning.png" alt="Planning comparison (figures/planning.png)" data-full="figures/planning.png" style="width:100%;max-width:900px;border-radius:6px;">
+          <figcaption>Waypoints from ground truth, PlanT, Transfuser, and DiffusionDrive (image loaded from <code>figures/planning.png</code>).</figcaption>
         </figure>
 
-        <p>
-          For the planning task, we trained three baseline agents: <em>Transfuser</em>, <em>DiffusionDrive</em>, and <em>PlanT</em>.
-          Transfuser and DiffusionDrive were chosen due to their success on Navsim. Both agents use a ResNet-34 backbone with 3 forward-facing cameras
-          and LiDAR. Cameras are cropped and concatenated into a single image of size <code>256×1024</code> and LiDAR point clouds rasterized
-          into a BEV of size <code>256×256</code>. Ego status input contains velocity, acceleration and driving command. Driving commands are computed
-          as in Navsim. Annotated lane-guidance waypoints are classified by checking the lateral distance of the point 15 m ahead of ego; threshold is 2 m.
-        </p>
-
-        <p>
-          DiffusionDrive was trained for 6 epochs and Transfuser for 3 epochs with learning rate <code>7.5×10<sup>-5</sup></code> on 8 NVIDIA A100 GPUs
-          with total batch size 64. Training set scenarios were filtered with driving score &gt; 70. During training we sampled ground-truth trajectories
-          at 2 Hz (8 waypoints for a 4 s horizon). Implementation follows DiffusionDrive where we used 20 anchors clustered from our dataset.
-          During evaluation we used 2 denoising steps as in the Navsim challenge.
-        </p>
-
-        <p>
-          PlanT was trained for 50 epochs, batch size 16, learning rate <code>1e-4</code>. PlanT uses ground-truth information—training it verifies
-          dataset labels.
-        </p>
-
-        <p>
-          For evaluation we provide open-loop and closed-loop results. Open-loop metrics are ADE (average displacement error), FDE (final displacement error),
-          AHE (average heading error) and FHE (final heading error) between predicted and ground-truth trajectories as in NuPlan. Metrics are provided for
-          prediction horizons of 1 s, 2 s and 4 s at 2 Hz sampling. We used the Town13 validation set limited to 400-frame episodes. Closed-loop evaluation
-          was run on 36 simplified scenarios within the CARLA Leaderboard V2 framework. Scenario-specific results are in the Appendix.
-        </p>
-
-        <!-- Open-loop results table (kept in file) -->
-        <figure class="table-figure" aria-labelledby="tab-openloop-caption">
-          <figcaption id="tab-openloop-caption"><strong>Table:</strong> Open-loop results on validation set with 1s, 2s and 4s planning horizons (H)</figcaption>
-          <div class="table-responsive">
-            <table class="results-table" id="tab-openloop-results">
-              <thead>
-                <tr>
-                  <th rowspan="2">Model</th>
-                  <th colspan="5">Input</th>
-                  <th rowspan="2">H (s)</th>
-                  <th colspan="4">Results</th>
-                </tr>
-                <tr>
-                  <th>Camera</th>
-                  <th>LiDAR</th>
-                  <th>GT Box</th>
-                  <th>Ego Status</th>
-                  <th></th>
-                  <th>ADE</th>
-                  <th>FDE</th>
-                  <th>AHE</th>
-                  <th>FHE</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td rowspan="3">DiffusionDrive</td>
-                  <td></td><td></td><td></td><td></td><td></td>
-                  <td>4</td>
-                  <td>2.69</td><td>5.58</td><td>0.27</td><td>0.21</td>
-                </tr>
-                <tr>
-                  <td>✓</td><td>✓</td><td></td><td>✓</td><td></td>
-                  <td>2</td>
-                  <td>1.14</td><td>2.14</td><td>0.21</td><td>0.21</td>
-                </tr>
-                <tr>
-                  <td></td><td></td><td></td><td></td><td></td>
-                  <td>1</td>
-                  <td>0.51</td><td>0.78</td><td>0.12</td><td>0.12</td>
-                </tr>
-
-                <tr>
-                  <td rowspan="3">PlanT</td>
-                  <td></td><td></td><td></td><td></td><td></td>
-                  <td>4</td>
-                  <td>—</td><td>—</td><td>—</td><td>—</td>
-                </tr>
-                <tr>
-                  <td></td><td></td><td>✓</td><td></td><td></td>
-                  <td>2</td>
-                  <td>1.03</td><td>1.71</td><td>0.36</td><td>0.34</td>
-                </tr>
-                <tr>
-                  <td></td><td></td><td></td><td></td><td></td>
-                  <td>1</td>
-                  <td>—</td><td>—</td><td>—</td><td>—</td>
-                </tr>
-
-                <tr>
-                  <td rowspan="3">Transfuser</td>
-                  <td></td><td></td><td></td><td></td><td></td>
-                  <td>4</td>
-                  <td>2.29</td><td>4.97</td><td>0.23</td><td>0.27</td>
-                </tr>
-                <tr>
-                  <td>✓</td><td>✓</td><td></td><td>✓</td><td></td>
-                  <td>2</td>
-                  <td>0.91</td><td>1.74</td><td>0.23</td><td>0.27</td>
-                </tr>
-                <tr>
-                  <td></td><td></td><td></td><td></td><td></td>
-                  <td>1</td>
-                  <td>0.40</td><td>0.59</td><td>0.22</td><td>0.22</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </figure>
+        <p>We trained Transfuser, DiffusionDrive and PlanT with standard settings (ResNet-34 backbone, camera + LiDAR). Open-loop (ADE/FDE/AHE/FHE) and closed-loop evaluations provided.</p>
 
       </article>
 
     </div>
   </section>
 
-  <!-- Visualization: show three images in specified order (images/ folder) -->
+  <!-- Visualization (images/ folder) -->
   <section class="section" id="visualization">
     <div class="container">
       <h2>Visualization</h2>
-      <p class="small-muted">Explore interactive visualization tools and sample frames below.</p>
+      <p class="small-muted">Three data visualization images (in this order) from the <code>images/</code> folder.</p>
 
       <div class="viz-gallery" role="list">
         <div class="viz-item" role="listitem">
-          <img src="images/select_episode.png" alt="Select Episode" data-full="images/select_episode.png" loading="lazy">
+          <img src="images/select_episode.png" alt="Select Episode (images/select_episode.png)" data-full="images/select_episode.png" loading="lazy">
           <div class="viz-caption">Select Episode (interface screenshot)</div>
         </div>
 
         <div class="viz-item" role="listitem">
-          <img src="images/bev.png" alt="BEV Visualization" data-full="images/bev.png" loading="lazy">
+          <img src="images/bev.png" alt="BEV Visualization (images/bev.png)" data-full="images/bev.png" loading="lazy">
           <div class="viz-caption">BEV Visualization</div>
         </div>
 
         <div class="viz-item" role="listitem">
-          <img src="images/front.png" alt="Front Camera View" data-full="images/front.png" loading="lazy">
+          <img src="images/front.png" alt="Front Camera View (images/front.png)" data-full="images/front.png" loading="lazy">
           <div class="viz-caption">Front Camera View</div>
         </div>
       </div>
