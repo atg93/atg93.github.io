@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TaCarla — Autonomous Driving Study</title>
 
-  <!-- Embedded styles (adapted from the TopoBDA layout you showed) -->
   <style>
     :root{
       --bg: #ffffff;
@@ -44,46 +43,29 @@
     h2{margin:0 0 16px 0;font-size:22px}
     p{margin:0 0 12px 0}
 
-    /* grid & cards */
     .grid{display:grid;gap:16px}
     .grid-2{grid-template-columns:repeat(2,1fr)}
-    .grid-3{grid-template-columns:repeat(3,1fr)}
     .card{background:var(--card);padding:16px;border-radius:var(--radius);border:1px solid var(--border)}
-    .highlight{background:linear-gradient(90deg, rgba(99,102,241,0.06), transparent);border-color: rgba(99,102,241,0.14)}
-
-    /* responsive images & videos */
     img, video{max-width:100%;height:auto;display:block;border-radius:8px}
     .figure-container{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
     .figure-caption{color:var(--muted);font-size:14px}
 
-    /* tables */
-    .table-responsive{overflow:auto}
-    table{width:100%;border-collapse:collapse}
-    th, td{padding:10px;border-bottom:1px solid #e6eefc;text-align:left;font-size:14px}
-    thead th{background:transparent;font-weight:700}
-    .performance-table tbody tr.highlight td{font-weight:700}
+    .tex-card { display:block; padding:16px; border-radius:12px; border:1px solid var(--border); background:var(--card); }
+    .tex-title { font-weight:700; margin-bottom:8px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .tex-content { white-space:pre-wrap; color: #0f172a; max-height:420px; overflow:auto; font-size:15px; padding-top:6px; }
+    .tex-actions { display:flex; gap:8px; align-items:center; }
 
-    /* citation box */
-    .citation-box{background:#f8f9ff;padding:12px;border-left:4px solid #667eea;border-radius:8px;display:flex;gap:12px;align-items:flex-start}
-    .copy-btn{padding:8px 10px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
+    .small-muted { color:var(--muted); font-size:13px; }
 
-    /* modal for images */
+    footer.footer{padding:24px 0;text-align:center;color:var(--muted)}
+
     .image-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:60}
     .image-modal img{max-width:95%;max-height:90%;border-radius:8px}
     .image-modal.active{display:flex}
     .close-modal{position:absolute;top:20px;right:24px;color:#fff;font-size:28px;cursor:pointer}
 
-    /* tex/abstract display */
-    .tex-card { display:block; padding:16px; border-radius:12px; border:1px solid var(--border); background:var(--card); }
-    .tex-title { font-weight:700; margin-bottom:8px; }
-    .tex-content { white-space:pre-wrap; color: #0f172a; max-height:420px; overflow:auto; font-size:15px; }
-
-    footer.footer{padding:24px 0;text-align:center;color:var(--muted)}
-
-    /* small screens */
     @media (max-width:900px){
       .grid-2{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:1fr}
       .hero-content{padding:0 12px}
       .container{padding:20px}
     }
@@ -102,7 +84,6 @@
           <span class="author">TaCarla Research Team</span>
           <span class="author">CARLA Leaderboard 2.0</span>
         </div>
-        <div class="affiliations"></div>
 
         <div class="action-buttons">
           <a href="#download" class="btn btn-primary">📥 Download</a>
@@ -114,18 +95,22 @@
     </div>
   </header>
 
-  <!-- OVERVIEW: ABSTRACT LOADED FROM Abstract.tex -->
+  <!-- OVERVIEW: ABSTRACT + EXPERIMENTS LOADED FROM chapter/ -->
   <section class="section" id="overview">
     <div class="container">
-      <h2>Abstract</h2>
+      <h2>Abstract & Experiments</h2>
 
       <div class="grid grid-2" style="align-items:start">
+        <!-- Abstract card (loads chapter/Abstract.tex) -->
         <div>
-          <!-- Abstract will be loaded from Abstract.tex at runtime.
-               Make sure Abstract.tex is served in the same directory as this HTML file. -->
           <div id="abstract-from-tex" class="tex-card" aria-live="polite">
-            <div class="tex-title">Abstract (loaded from <code>Abstract.tex</code>)</div>
-            <div id="abstract-tex-content" class="tex-content">Loading abstract…</div>
+            <div class="tex-title">
+              <span>Abstract (loaded from <code>chapter/Abstract.tex</code>)</span>
+              <div class="tex-actions">
+                <a id="open-abstract-raw" class="btn btn-secondary" href="chapter/Abstract.tex" target="_blank" rel="noopener">Open raw</a>
+              </div>
+            </div>
+            <div id="abstract-tex-content" class="tex-content small-muted">Loading Abstract...</div>
           </div>
 
           <ul style="margin-top:12px;color:var(--muted)">
@@ -135,15 +120,16 @@
           </ul>
         </div>
 
+        <!-- Experiments card (loads chapter/Experiments.tex) -->
         <div>
-          <div class="card">
-            <strong>Quick links</strong>
-            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
-              <a class="btn btn-secondary" href="#videos">Videos</a>
-              <a class="btn btn-secondary" href="#visualization">Visuals</a>
-              <a class="btn btn-secondary" href="#download">Download</a>
-              <a class="btn btn-secondary" href="https://github.com/atg93/TaCarla-Visualization" target="_blank" rel="noopener">📊 Visualization (GitHub)</a>
+          <div id="experiments-from-tex" class="tex-card" aria-live="polite">
+            <div class="tex-title">
+              <span>Experiments (loaded from <code>chapter/Experiments.tex</code>)</span>
+              <div class="tex-actions">
+                <a id="open-experiments-raw" class="btn btn-secondary" href="chapter/Experiments.tex" target="_blank" rel="noopener">Open raw</a>
+              </div>
             </div>
+            <div id="experiments-tex-content" class="tex-content small-muted">Loading Experiments...</div>
           </div>
         </div>
       </div>
@@ -154,7 +140,6 @@
   <section class="section" id="videos">
     <div class="container">
       <h2>Videos</h2>
-
       <div class="grid grid-2" style="margin-top:12px">
         <div class="card">
           <video controls preload="metadata" playsinline>
@@ -179,7 +164,6 @@
   <section class="section" id="visualization">
     <div class="container">
       <h2>Data Visualization</h2>
-
       <p style="color:var(--muted);margin-bottom:12px">
         Explore interactive visualization tools and example dashboards for TaCarla on GitHub:
         <a href="https://github.com/atg93/TaCarla-Visualization" target="_blank" rel="noopener">https://github.com/atg93/TaCarla-Visualization</a>
@@ -198,13 +182,6 @@
         </div>
         <div class="figure-caption"><strong>Front Camera</strong></div>
       </div>
-
-      <div class="figure-container">
-        <div class="image-container">
-          <img src="images/select_episode.png" alt="Episode selection UI" class="research-figure" loading="lazy" data-full="images/select_episode.png">
-        </div>
-        <div class="figure-caption"><strong>Select Episode UI</strong></div>
-      </div>
     </div>
   </section>
 
@@ -212,8 +189,7 @@
   <section class="section" id="citation">
     <div class="container">
       <h2>Citation</h2>
-
-      <div class="citation-box">
+      <div class="card citation-box">
         <pre id="citation-text" style="margin:0;font-family:ui-monospace,monospace">
 @inproceedings{2025tacarla,
   title   = {TaCarla: A comprehensive benchmarking dataset for end-to-end autonomous driving},
@@ -221,7 +197,7 @@
   year    = {2025}
 }
         </pre>
-        <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;flex-direction:column;gap:8px;margin-left:12px">
           <button class="copy-btn" id="copyCitation">📋 Copy Citation</button>
           <a href="#download" class="btn btn-secondary" style="text-align:center">📥 Download Bib</a>
         </div>
@@ -229,7 +205,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <p>© 2025 TaCarla Team</p>
@@ -237,17 +212,13 @@
     </div>
   </footer>
 
-  <!-- IMAGE MODAL -->
   <div id="imageModal" class="image-modal" role="dialog" aria-hidden="true">
     <div class="close-modal" id="closeModal" title="Close">&times;</div>
     <img id="modalImage" src="" alt="Full size" />
   </div>
 
-  <!-- SCRIPTS -->
   <script>
-    /* -----------------------
-       Image modal: click image to open full-size in modal
-       ----------------------- */
+    /* Image modal handlers */
     document.querySelectorAll('img[data-full]').forEach(img => {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', () => {
@@ -271,10 +242,18 @@
         document.getElementById('modalImage').src = '';
       }
     });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('imageModal');
+        if (modal.classList.contains('active')) {
+          modal.classList.remove('active');
+          modal.setAttribute('aria-hidden', 'true');
+          document.getElementById('modalImage').src = '';
+        }
+      }
+    });
 
-    /* -----------------------
-       Copy citation button
-       ----------------------- */
+    /* Copy citation */
     document.getElementById('copyCitation').addEventListener('click', async () => {
       const text = document.getElementById('citation-text').innerText.trim();
       try {
@@ -287,58 +266,66 @@
       }
     });
 
-    /* -----------------------
-       Load Abstract.tex at runtime
-       - Tries to extract \begin{abstract}...\end{abstract}
-       - Falls back to full file text
-       Notes:
-       * Abstract.tex must be in the same public directory as this HTML when served.
-       * If you host on GitHub Pages or a static server, upload Abstract.tex alongside index.html.
-       ----------------------- */
-    (function loadAbstract() {
-      const targetEl = document.getElementById('abstract-tex-content');
+    /* Generic loader for .tex files in chapter/ folder
+       - path: relative path to file (e.g., 'chapter/Abstract.tex')
+       - options: try to extract environment or section if provided
+    */
+    async function loadTexToElement(path, elementId, options = {}) {
+      const targetEl = document.getElementById(elementId);
       if (!targetEl) return;
-      fetch('Abstract.tex')
-        .then(resp => {
-          if (!resp.ok) throw new Error('Could not fetch Abstract.tex: ' + resp.status + ' ' + resp.statusText);
-          return resp.text();
-        })
-        .then(text => {
-          // Attempt to extract an abstract environment
-          const envMatch = text.match(/\\begin\{abstract\}([\s\S]*?)\\end\{abstract\}/m);
-          let display = envMatch ? envMatch[1].trim() : text.trim();
+      targetEl.textContent = 'Loading...';
+      try {
+        const resp = await fetch(path);
+        if (!resp.ok) throw new Error(resp.status + ' ' + resp.statusText);
+        let text = await resp.text();
 
-          // Remove common LaTeX commands that are safe to drop for display
-          // (simple heuristics — not a full LaTeX parser)
-          display = display
-            .replace(/\\cite\{[^\}]*\}/g, '')         // remove \cite{...}
-            .replace(/\\ref\{[^\}]*\}/g, '')          // remove \ref{...}
-            .replace(/\\[a-zA-Z]+\*?(?:\[[^\]]*\])?(?:\{[^\}]*\})?/g, '') // drop other commands like \emph{...}
-            .replace(/\$\$?([\s\S]*?)\$\$?/g, '')     // drop simple inline/display math
-            .replace(/\{\\\}/g, '')                  // cleanup escaped braces
-            .trim();
-
-          // If the extracted text is empty, show a helpful note
-          if (!display) display = 'Abstract appears to be empty after removing LaTeX commands. Please check Abstract.tex.';
-
-          targetEl.textContent = display;
-        })
-        .catch(err => {
-          targetEl.textContent = 'Error loading Abstract.tex: ' + err.message + '\n\n(Confirm that Abstract.tex is available in the same folder as this HTML on the server.)';
-        });
-    })();
-
-    // Enable ESC key to close modal
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('imageModal');
-        if (modal.classList.contains('active')) {
-          modal.classList.remove('active');
-          modal.setAttribute('aria-hidden', 'true');
-          document.getElementById('modalImage').src = '';
+        // If user requested a specific LaTeX environment to extract, try that first.
+        if (options.env) {
+          const envRe = new RegExp('\\\\\\begin\\{' + options.env + '\\}([\\s\\S]*?)\\\\\\end\\{' + options.env + '\\}', 'm');
+          const m = text.match(envRe);
+          if (m && m[1].trim()) text = m[1].trim();
         }
+
+        // If user requested to extract by section title (e.g., 'Experiments'), try to extract
+        // \section{Experiments} ... until next \section or \chapter or end-of-file.
+        if (options.section) {
+          // Allow starred/unstarred: \section or \section*
+          const secRe = new RegExp('\\\\section\\*?\\{\\s*' + options.section.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '\\s*\\}([\\s\\S]*?)(?=\\\\section\\*?\\{|\\\\chapter\\*?\\{|$)', 'm');
+          const sm = text.match(secRe);
+          if (sm && sm[1].trim()) text = sm[1].trim();
+        }
+
+        // Simple stripping of some LaTeX commands (heuristic).
+        let display = text
+          .replace(/%[^\n]*/g, '')                      // remove line comments
+          .replace(/\\cite\{[^\}]*\}/g, '')            // remove \cite{...}
+          .replace(/\\ref\{[^\}]*\}/g, '')             // remove \ref{...}
+          .replace(/\\label\{[^\}]*\}/g, '')           // remove \label{...}
+          .replace(/\\(begin|end)\{[^\}]*\}/g, '')     // remove begin/end env tags
+          .replace(/\\paragraph\*?\{[^\}]*\}/g, '')    // remove paragraphs
+          .replace(/\\[a-zA-Z]+\*?(?:\[[^\]]*\])?(?:\{[^\}]*\})?/g, '') // drop other commands like \emph{...}
+          .replace(/\$\$?([\s\S]*?)\$\$?/g, '')        // drop simple inline/display math
+          .replace(/\{\s*\}/g, '')                     // cleanup empty braces
+          .trim();
+
+        if (!display) display = '(Content empty after removing LaTeX commands — check the source file.)';
+        targetEl.textContent = display;
+      } catch (err) {
+        targetEl.textContent = 'Error loading ' + path + ': ' + err.message + '\n(Confirm the file exists at that path and is served by your webserver.)';
       }
-    });
+    }
+
+    // Load Abstract.tex from chapter/ folder. Prefer extracting abstract environment if present.
+    loadTexToElement('chapter/Abstract.tex', 'abstract-tex-content', { env: 'abstract' });
+
+    // Load Experiments.tex from chapter/ folder. Try to extract a "Experiments" \section if present,
+    // otherwise fall back to file content.
+    loadTexToElement('chapter/Experiments.tex', 'experiments-tex-content', { section: 'Experiments' });
+
+    // If the filenames are slightly different or in another case, you can also call:
+    // loadTexToElement('chapter/abstract.tex', 'abstract-tex-content', { env: 'abstract' });
+    // loadTexToElement('chapter/experiments.tex', 'experiments-tex-content', { section: 'Experiments' });
+
   </script>
 </body>
 </html>
