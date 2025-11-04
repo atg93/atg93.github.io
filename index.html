@@ -110,6 +110,8 @@
           <a href="#download" class="btn btn-primary">📥 Download</a>
           <a href="#citation" class="btn btn-secondary">📋 Cite</a>
           <a href="#visualization" class="btn btn-secondary">🖼️ Visualization</a>
+          <!-- ADDED: External Data Visualization link (opens in new tab) -->
+          <a href="https://github.com/atg93/TaCarla-Visualization" class="btn btn-secondary" target="_blank" rel="noopener">📊 Data Visualization</a>
         </div>
       </div>
     </div>
@@ -161,6 +163,8 @@
               <a class="btn btn-secondary" href="#videos">Videos</a>
               <a class="btn btn-secondary" href="#visualization">Visuals</a>
               <a class="btn btn-secondary" href="#download">Download</a>
+              <!-- ADDED: GitHub visualization link also in Quick links -->
+              <a class="btn btn-secondary" href="https://github.com/atg93/TaCarla-Visualization" target="_blank" rel="noopener">📊 Visualization (GitHub)</a>
             </div>
           </div>
         </div>
@@ -198,6 +202,11 @@
     <div class="container">
       <h2>Data Visualization</h2>
 
+      <p style="color:var(--muted);margin-bottom:12px">
+        Explore interactive visualization tools and example dashboards for TaCarla on GitHub:
+        <a href="https://github.com/atg93/TaCarla-Visualization" target="_blank" rel="noopener">https://github.com/atg93/TaCarla-Visualization</a>
+      </p>
+
       <div class="figure-container">
         <div class="image-container">
           <img src="images/bev.png" alt="BEV Visualization" class="research-figure" loading="lazy" data-full="images/bev.png">
@@ -224,134 +233,4 @@
 
   <!-- CITATION -->
   <section class="section" id="citation">
-    <div class="container">
-      <h2>Citation</h2>
-
-      <div class="citation-box">
-        <pre id="citation-text" style="margin:0;font-family:ui-monospace,monospace">
-@inproceedings{2025tacarla,
-  title   = {TaCarla: A comprehensive benchmarking dataset for end-to-end autonomous driving},
-  author  = {TaCarla Research Team},
-  year    = {2025}
-}
-        </pre>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <button class="copy-btn" id="copyCitation">📋 Copy Citation</button>
-          <a href="#download" class="btn btn-secondary" style="text-align:center">📥 Download Bib</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 TaCarla Team</p>
-      <p>Contact: <a href="mailto:team@tacarla.example">team@tacarla.example</a></p>
-    </div>
-  </footer>
-
-  <!-- IMAGE MODAL -->
-  <div id="imageModal" class="image-modal" role="dialog" aria-hidden="true">
-    <div class="close-modal" id="closeModal" title="Close">&times;</div>
-    <img id="modalImage" src="" alt="Full size" />
-  </div>
-
-  <!-- Script: image modal, tex reader, copy citation -->
-  <script>
-    // Image modal: click image to open full-size in modal
-    document.querySelectorAll('img[data-full]').forEach(img => {
-      img.style.cursor = 'zoom-in';
-      img.addEventListener('click', () => {
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        modalImg.src = img.dataset.full || img.src;
-        modal.classList.add('active');
-        modal.setAttribute('aria-hidden', 'false');
-      });
-    });
-    document.getElementById('closeModal').addEventListener('click', () => {
-      const modal = document.getElementById('imageModal');
-      modal.classList.remove('active');
-      modal.setAttribute('aria-hidden', 'true');
-      document.getElementById('modalImage').src = '';
-    });
-    document.getElementById('imageModal').addEventListener('click', (e) => {
-      if (e.target.id === 'imageModal') {
-        e.currentTarget.classList.remove('active');
-        e.currentTarget.setAttribute('aria-hidden', 'true');
-        document.getElementById('modalImage').src = '';
-      }
-    });
-
-    // COPY CITATION
-    document.getElementById('copyCitation').addEventListener('click', async () => {
-      const text = document.getElementById('citation-text').innerText.trim();
-      try {
-        await navigator.clipboard.writeText(text);
-        document.getElementById('copyCitation').textContent = '✅ Copied!';
-        setTimeout(() => document.getElementById('copyCitation').textContent = '📋 Copy Citation', 1500);
-      } catch (err) {
-        alert('Could not copy to clipboard. Here is the citation:\\n\\n' + text);
-      }
-    });
-
-    // TEX READER: read .tex file and show contents, allow download
-    const texInput = document.getElementById('texInput');
-    const texContent = document.getElementById('texContent');
-    const downloadBtn = document.getElementById('downloadTexBtn');
-    const clearBtn = document.getElementById('clearTexBtn');
-    let currentTexBlobUrl = null;
-    let currentTexName = 'document.tex';
-
-    texInput.addEventListener('change', (ev) => {
-      const file = ev.target.files && ev.target.files[0];
-      if (!file) return;
-      if (!file.name.endsWith('.tex')) {
-        alert('Please select a .tex file');
-        return;
-      }
-      currentTexName = file.name;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const text = e.target.result;
-        texContent.textContent = text;
-        if (currentTexBlobUrl) { URL.revokeObjectURL(currentTexBlobUrl); currentTexBlobUrl = null; }
-        const blob = new Blob([text], {type: 'text/x-tex'});
-        currentTexBlobUrl = URL.createObjectURL(blob);
-        downloadBtn.disabled = false;
-      };
-      reader.readAsText(file);
-    });
-
-    downloadBtn.addEventListener('click', () => {
-      if (!currentTexBlobUrl) return;
-      const a = document.createElement('a');
-      a.href = currentTexBlobUrl;
-      a.download = currentTexName;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    });
-
-    clearBtn.addEventListener('click', () => {
-      texInput.value = '';
-      texContent.textContent = 'No .tex file loaded.';
-      downloadBtn.disabled = true;
-      if (currentTexBlobUrl) { URL.revokeObjectURL(currentTexBlobUrl); currentTexBlobUrl = null; }
-    });
-
-    // Enable keyboard Esc to close modal
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('imageModal');
-        if (modal.classList.contains('active')) {
-          modal.classList.remove('active');
-          modal.setAttribute('aria-hidden', 'true');
-          document.getElementById('modalImage').src = '';
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+    <div class="container"
