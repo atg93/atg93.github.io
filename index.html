@@ -19,7 +19,12 @@
     nav a { margin-right: 1rem; text-decoration: none; }
     nav a:hover { text-decoration: underline; }
 
-    img, video { max-width: 100%; height: auto; display: block; }
+    /* make media conform to container */
+    img, video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
 
     .grid {
       display: grid;
@@ -44,8 +49,9 @@
     section { scroll-margin-top: 80px; }
     footer { margin-top: 4rem; font-size: .9rem; color: #555; }
 
+    /* scrollbox now acts as a padded container; images inside will scale to fit */
     .scrollbox {
-      overflow-x: auto;
+      overflow-x: hidden;               /* prevent horizontal scroll; images will scale */
       -webkit-overflow-scrolling: touch;
       border: 1px solid #e5e5e5;
       border-radius: 12px;
@@ -54,10 +60,13 @@
       padding: 12px;
     }
 
+    /* Make "original" images scale to the container width while keeping aspect ratio.
+       If you still want to open the true-resolution file, the "Open full size" link
+       will let the user view the image in a new tab. */
     .original-img {
-      max-width: none !important;
-      width: auto;
-      height: auto;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
       display: block;
     }
 
