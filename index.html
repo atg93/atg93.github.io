@@ -4,202 +4,376 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TaCarla — Autonomous Driving Study</title>
+
+  <!-- Embedded styles (adapted from the TopoBDA layout you showed) -->
   <style>
-    :root { color-scheme: light dark; }
-
-    body {
-      font-family: system-ui, sans-serif;
-      max-width: clamp(960px, 92vw, 1400px);
-      margin: 40px auto;
-      line-height: 1.6;
-      padding: 0 12px;
+    :root{
+      --bg: #ffffff;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --card: #f8fafc;
+      --border: #e6eefc;
+      --radius: 12px;
+      color-scheme: light dark;
     }
-
-    header { margin-bottom: 2rem; }
-    nav a { margin-right: 1rem; text-decoration: none; }
-    nav a:hover { text-decoration: underline; }
-
-    /* make media conform to container */
-    img, video {
-      max-width: 100%;
-      height: auto;
-      display: block;
+    *{box-sizing:border-box}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      margin:0;
+      background:var(--bg);
+      color:#0f172a;
+      line-height:1.5;
     }
-
-    .grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    .container{max-width:1200px;margin:0 auto;padding:32px;}
+    header.hero{
+      background:linear-gradient(180deg, rgba(37,99,235,0.06), transparent 60%);
+      border-bottom:1px solid var(--border);
+      padding:40px 0;
     }
+    .hero-content{display:flex;flex-direction:column;gap:18px}
+    .hero-title{font-size:32px;margin:0}
+    .hero-subtitle{margin:0;color:var(--muted)}
+    .authors, .affiliations{display:flex;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:14px}
+    .author{background:transparent;padding:2px 6px;border-radius:6px}
+    .action-buttons{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;text-decoration:none;border:1px solid transparent;font-weight:600}
+    .btn-primary{background:var(--accent);color:white}
+    .btn-secondary{background:transparent;color:var(--accent);border-color:var(--border)}
 
-    .grid.small {
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    }
+    section.section{padding:40px 0;border-bottom:1px solid var(--border)}
+    h2{margin:0 0 16px 0;font-size:22px}
+    p{margin:0 0 12px 0}
 
-    .card {
-      border: 1px solid #e5e5e5;
-      border-radius: 12px;
-      padding: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,.06);
-      background: #fff;
-    }
+    /* grid & cards */
+    .grid{display:grid;gap:16px}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .card{background:var(--card);padding:16px;border-radius:var(--radius);border:1px solid var(--border)}
+    .highlight{background:linear-gradient(90deg, rgba(99,102,241,0.06), transparent);border-color: rgba(99,102,241,0.14)}
 
-    figure { margin: 0; }
-    figcaption { font: 600 14px/1.3 system-ui, sans-serif; margin-top: 8px; }
-    section { scroll-margin-top: 80px; }
-    footer { margin-top: 4rem; font-size: .9rem; color: #555; }
+    /* responsive images & videos */
+    img, video{max-width:100%;height:auto;display:block;border-radius:8px}
+    .figure-container{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+    .figure-caption{color:var(--muted);font-size:14px}
 
-    /* scrollbox now acts as a padded container; images inside will scale to fit */
-    .scrollbox {
-      overflow-x: hidden;               /* prevent horizontal scroll; images will scale */
-      -webkit-overflow-scrolling: touch;
-      border: 1px solid #e5e5e5;
-      border-radius: 12px;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,.06);
-      padding: 12px;
-    }
+    /* tables */
+    .table-responsive{overflow:auto}
+    table{width:100%;border-collapse:collapse}
+    th, td{padding:10px;border-bottom:1px solid #e6eefc;text-align:left;font-size:14px}
+    thead th{background:transparent;font-weight:700}
+    .performance-table tbody tr.highlight td{font-weight:700}
 
-    /* Make "original" images scale to the container width while keeping aspect ratio.
-       If you still want to open the true-resolution file, the "Open full size" link
-       will let the user view the image in a new tab. */
-    .original-img {
-      width: 100% !important;
-      max-width: 100% !important;
-      height: auto !important;
-      display: block;
-    }
+    /* citation box */
+    .citation-box{background:#f8f9ff;padding:12px;border-left:4px solid #667eea;border-radius:8px;display:flex;gap:12px;align-items:flex-start}
+    .copy-btn{padding:8px 10px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
 
-    .img-meta {
-      font-size: 12px;
-      color: #666;
-      margin-top: 6px;
-    }
+    /* modal for images */
+    .image-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:60}
+    .image-modal img{max-width:95%;max-height:90%;border-radius:8px}
+    .image-modal.active{display:flex}
+    .close-modal{position:absolute;top:20px;right:24px;color:#fff;font-size:28px;cursor:pointer}
 
-    @media (prefers-color-scheme: dark) {
-      .card, .scrollbox {
-        border-color: #333;
-        background: #111;
-        box-shadow: none;
-      }
-      footer { color: #bbb; }
-      .img-meta { color: #aaa; }
+    /* tex reader */
+    .tex-reader{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .tex-display{white-space:pre-wrap;background:#0f172a;color:#e6eefc;padding:12px;border-radius:8px;overflow:auto;max-height:360px;width:100%}
+    .tex-actions{display:flex;gap:8px;align-items:center}
+    .btn-file{padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:white;cursor:pointer}
+
+    footer.footer{padding:24px 0;text-align:center;color:var(--muted)}
+
+    /* small screens */
+    @media (max-width:900px){
+      .grid-2{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .hero-content{padding:0 12px}
+      .container{padding:20px}
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>TaCarla: A comprehensive benchmarking dataset for end-to-end autonomous driving</h1>
-    <nav>
-      <a href="#overview">Overview</a>
-      <a href="#videos">Videos</a>
-      <a href="#visualization">Data Visualization</a>
-      <a href="#download">Download</a>
-      <a href="#citation">Citation</a>
-      <a href="#team">Team</a>
-    </nav>
+
+  <!-- HEADER -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">TaCarla</h1>
+        <p class="hero-subtitle">A comprehensive benchmarking dataset for end-to-end autonomous driving</p>
+
+        <div class="authors">
+          <span class="author">TaCarla Research Team</span>
+          <span class="author">CARLA Leaderboard 2.0</span>
+        </div>
+        <div class="affiliations">
+          <span class="affiliation">Togg • Research</span>
+        </div>
+
+        <div class="action-buttons">
+          <a href="#download" class="btn btn-primary">📥 Download</a>
+          <a href="#citation" class="btn btn-secondary">📋 Cite</a>
+          <a href="#visualization" class="btn btn-secondary">🖼️ Visualization</a>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <section id="overview">
-    <h2>Overview</h2>
-    <p>
-      Collecting a high-quality dataset is a critical task that demands meticulous attention
-      to detail, as overlooking certain aspects can render the entire dataset unusable.
-      Autonomous driving challenges remain a prominent area of research, requiring
-      further exploration to enhance the perception and planning performance of vehicles.
-      However, existing datasets are often incomplete. For instance, datasets that include
-      perception information generally lack planning data, while planning datasets typi-
-      cally consist of extensive driving sequences where the ego vehicle predominantly
-      drives forward, offering limited behavioral diversity. The CARLA Leaderboard 2.0
-      challenge, providing a diverse set of scenarios to address the long-tail problem in
-      autonomous driving, has emerged as a valuable alternative platform for developing
-      perception and planning models. Nevertheless, existing datasets collected on this
-      platform present certain limitations. Some datasets appear to be tailored primarily
-      for limited sensor configuration, with particular sensor configurations. Additionally,
-      in some datasets, the expert policies used for data collection exhibit suboptimal
-      driving behaviors, such as oscillations. To support end-to-end autonomous driving
-      research, we have collected a new dataset comprising over 2.85 million frames
-      using the CARLA simulation environment for the diverse Leaderboard 2.0 chal-
-      lenge scenarios, making it the largest dataset in the literature to the best of our
-      knowledge. Our dataset is designed not only for planning tasks but also supports
-      dynamic object detection, lane divider detection, centerline detection, traffic light
-      recognition, and prediction tasks. Furthermore, we demonstrate its versatility by
-      training various models using our dataset.
-    </p>
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <div class="container">
+      <h2>Overview</h2>
+      <div class="grid grid-2" style="align-items:start">
+        <div>
+          <p>
+            Collecting a high-quality dataset is a critical task that demands meticulous attention to detail.
+            To support end-to-end autonomous driving research we collected a dataset of over <strong>2.85 million frames</strong>
+            using the CARLA simulation environment for diverse Leaderboard 2.0 challenge scenarios. The dataset supports
+            planning, dynamic object detection, lane divider detection, centerline detection, traffic light recognition,
+            and prediction tasks.
+          </p>
 
-    <div class="grid small">
-      <img src="images/teaser.png" alt="TaCarla teaser" />
-      <img src="images/sample.png" alt="Sample visualization" />
+          <ul style="margin-top:12px;color:var(--muted)">
+            <li>Multi-sensor: Camera, BEV, LiDAR-ready design</li>
+            <li>Designed for perception + planning tasks</li>
+            <li>Large-scale and diverse scenarios to address long-tail behaviors</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="card">
+            <strong>Quick links</strong>
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+              <a class="btn btn-secondary" href="#videos">Videos</a>
+              <a class="btn btn-secondary" href="#visualization">Visuals</a>
+              <a class="btn btn-secondary" href="#download">Download</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="videos">
-    <h2>Videos</h2>
-    <div class="grid">
-      <figure class="card">
-        <video controls preload="metadata" playsinline>
-          <source src="videos/Town12_radar_HazardAtSideLaneTwoWays.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <figcaption>Hazard at Side Lane (Two Ways)</figcaption>
-      </figure>
+  <!-- VIDEOS -->
+  <section class="section" id="videos">
+    <div class="container">
+      <h2>Videos</h2>
 
-      <figure class="card">
-        <video controls preload="metadata" playsinline>
-          <source src="videos/Town12_radar_StaticCutIn.mp4" type="video/mp4" />
-        </video>
-        <figcaption>Static Cut-In</figcaption>
-      </figure>
+      <div class="grid grid-2" style="margin-top:12px">
+        <div class="card">
+          <video controls preload="metadata" playsinline>
+            <source src="videos/Town12_radar_HazardAtSideLaneTwoWays.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div style="margin-top:8px;color:var(--muted)">Hazard at Side Lane (Two Ways)</div>
+        </div>
+
+        <div class="card">
+          <video controls preload="metadata" playsinline>
+            <source src="videos/Town12_radar_StaticCutIn.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div style="margin-top:8px;color:var(--muted)">Static Cut-In</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="visualization">
-    <h2>Data Visualization</h2>
-    <p>https://github.com/atg93/TaCarla-Visualization</p>
-    <figure style="margin-bottom:16px;">
-      <div class="scrollbox">
-        <img class="original-img" src="images/bev.png" alt="Bird’s-eye view visualization" />
-      </div>
-      <figcaption>BEV Visualization</figcaption>
-      <div class="img-meta"><a href="images/bev.png" target="_blank" rel="noopener">Open full size</a></div>
-    </figure>
+  <!-- VISUALIZATION -->
+  <section class="section" id="visualization">
+    <div class="container">
+      <h2>Data Visualization</h2>
 
-    <figure style="margin-bottom:16px;">
-      <div class="scrollbox">
-        <img class="original-img" src="images/front.png" alt="Front camera visualization" />
+      <div class="figure-container">
+        <div class="image-container">
+          <img src="images/bev.png" alt="BEV Visualization" class="research-figure" loading="lazy" data-full="images/bev.png">
+        </div>
+        <div class="figure-caption"><strong>BEV Visualization</strong> — open full size by clicking the image.</div>
       </div>
-      <figcaption>Front Camera</figcaption>
-      <div class="img-meta"><a href="images/front.png" target="_blank" rel="noopener">Open full size</a></div>
-    </figure>
 
-    <figure>
-      <div class="scrollbox">
-        <img class="original-img" src="images/select_episode.png" alt="Episode selection UI" />
+      <div class="figure-container">
+        <div class="image-container">
+          <img src="images/front.png" alt="Front Camera Visualization" class="research-figure" loading="lazy" data-full="images/front.png">
+        </div>
+        <div class="figure-caption"><strong>Front Camera</strong></div>
       </div>
-      <figcaption>Select Episode UI</figcaption>
-      <div class="img-meta"><a href="images/select_episode.png" target="_blank" rel="noopener">Open full size</a></div>
-    </figure>
+
+      <div class="figure-container">
+        <div class="image-container">
+          <img src="images/select_episode.png" alt="Episode selection UI" class="research-figure" loading="lazy" data-full="images/select_episode.png">
+        </div>
+        <div class="figure-caption"><strong>Select Episode UI</strong></div>
+      </div>
+    </div>
   </section>
 
-  <section id="download">
-    <h2>Download</h2>
-    <p>Links or instructions for accessing the dataset / paper / code.</p>
+  <!-- DOWNLOAD / TEX READER -->
+  <section class="section" id="download">
+    <div class="container">
+      <h2>Download & Read LaTeX (.tex)</h2>
+
+      <div class="grid grid-2" style="align-items:start">
+        <div>
+          <div class="card">
+            <p>Links and instructions for accessing the dataset, paper, and code.</p>
+            <ul style="color:var(--muted)">
+              <li><a href="#" target="_blank">Dataset (link placeholder)</a></li>
+              <li><a href="#" target="_blank">Code repo (link placeholder)</a></li>
+              <li><a href="#" target="_blank">Paper PDF (link placeholder)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <strong>Read a .tex file locally</strong>
+            <p style="margin-top:8px;color:var(--muted)">Choose a LaTeX (.tex) file and view its source here. You can also download the displayed file.</p>
+
+            <div class="tex-reader" style="margin-top:12px">
+              <input id="texInput" type="file" accept=".tex" />
+              <div class="tex-actions">
+                <button id="downloadTexBtn" class="btn btn-primary" disabled>⬇️ Download .tex</button>
+                <button id="clearTexBtn" class="btn btn-secondary" type="button">Clear</button>
+              </div>
+            </div>
+
+            <div style="margin-top:12px">
+              <div id="texContent" class="tex-display" aria-live="polite">No .tex file loaded.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </section>
 
-  <section id="citation">
-    <h2>Citation</h2>
-    <pre><code>@inproceedings{2025tacarla,
-  title   = {TaCarla: ...},
-  author  = {...},
+  <!-- CITATION -->
+  <section class="section" id="citation">
+    <div class="container">
+      <h2>Citation</h2>
+
+      <div class="citation-box">
+        <pre id="citation-text" style="margin:0;font-family:ui-monospace,monospace">
+@inproceedings{2025tacarla,
+  title   = {TaCarla: A comprehensive benchmarking dataset for end-to-end autonomous driving},
+  author  = {TaCarla Research Team},
   year    = {2025}
-}</code></pre>
+}
+        </pre>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <button class="copy-btn" id="copyCitation">📋 Copy Citation</button>
+          <a href="#download" class="btn btn-secondary" style="text-align:center">📥 Download Bib</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="team">
-    <h2>Team</h2>
-    <p>TaCarla Research Team</p>
-  </section>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 TaCarla Team</p>
+      <p>Contact: <a href="mailto:team@tacarla.example">team@tacarla.example</a></p>
+    </div>
+  </footer>
 
-  <footer>© 2025 TaCarla Team</footer>
+  <!-- IMAGE MODAL -->
+  <div id="imageModal" class="image-modal" role="dialog" aria-hidden="true">
+    <div class="close-modal" id="closeModal" title="Close">&times;</div>
+    <img id="modalImage" src="" alt="Full size" />
+  </div>
+
+  <!-- Script: image modal, tex reader, copy citation -->
+  <script>
+    // Image modal: click image to open full-size in modal
+    document.querySelectorAll('img[data-full]').forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modalImg.src = img.dataset.full || img.src;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+    document.getElementById('closeModal').addEventListener('click', () => {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.getElementById('modalImage').src = '';
+    });
+    document.getElementById('imageModal').addEventListener('click', (e) => {
+      if (e.target.id === 'imageModal') {
+        e.currentTarget.classList.remove('active');
+        e.currentTarget.setAttribute('aria-hidden', 'true');
+        document.getElementById('modalImage').src = '';
+      }
+    });
+
+    // COPY CITATION
+    document.getElementById('copyCitation').addEventListener('click', async () => {
+      const text = document.getElementById('citation-text').innerText.trim();
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById('copyCitation').textContent = '✅ Copied!';
+        setTimeout(() => document.getElementById('copyCitation').textContent = '📋 Copy Citation', 1500);
+      } catch (err) {
+        alert('Could not copy to clipboard. Here is the citation:\\n\\n' + text);
+      }
+    });
+
+    // TEX READER: read .tex file and show contents, allow download
+    const texInput = document.getElementById('texInput');
+    const texContent = document.getElementById('texContent');
+    const downloadBtn = document.getElementById('downloadTexBtn');
+    const clearBtn = document.getElementById('clearTexBtn');
+    let currentTexBlobUrl = null;
+    let currentTexName = 'document.tex';
+
+    texInput.addEventListener('change', (ev) => {
+      const file = ev.target.files && ev.target.files[0];
+      if (!file) return;
+      if (!file.name.endsWith('.tex')) {
+        alert('Please select a .tex file');
+        return;
+      }
+      currentTexName = file.name;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target.result;
+        texContent.textContent = text;
+        if (currentTexBlobUrl) { URL.revokeObjectURL(currentTexBlobUrl); currentTexBlobUrl = null; }
+        const blob = new Blob([text], {type: 'text/x-tex'});
+        currentTexBlobUrl = URL.createObjectURL(blob);
+        downloadBtn.disabled = false;
+      };
+      reader.readAsText(file);
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!currentTexBlobUrl) return;
+      const a = document.createElement('a');
+      a.href = currentTexBlobUrl;
+      a.download = currentTexName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+
+    clearBtn.addEventListener('click', () => {
+      texInput.value = '';
+      texContent.textContent = 'No .tex file loaded.';
+      downloadBtn.disabled = true;
+      if (currentTexBlobUrl) { URL.revokeObjectURL(currentTexBlobUrl); currentTexBlobUrl = null; }
+    });
+
+    // Enable keyboard Esc to close modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('imageModal');
+        if (modal.classList.contains('active')) {
+          modal.classList.remove('active');
+          modal.setAttribute('aria-hidden', 'true');
+          document.getElementById('modalImage').src = '';
+        }
+      }
+    });
+  </script>
 </body>
 </html>
