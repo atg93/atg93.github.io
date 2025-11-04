@@ -10,17 +10,45 @@
     header { margin-bottom: 2rem; }
     nav a { margin-right: 1rem; text-decoration: none; }
     nav a:hover { text-decoration: underline; }
+
+    /* default media behavior for the rest of the page */
     img, video { max-width: 100%; height: auto; display: block; }
+
     .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); }
     .grid.small { grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
+
     .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 12px; box-shadow: 0 2px 6px rgba(0,0,0,.06); background: #fff; }
     figure { margin: 0; }
     figcaption { font: 600 14px/1.3 system-ui, sans-serif; margin-top: 8px; }
     section { scroll-margin-top: 80px; }
     footer { margin-top: 4rem; font-size: .9rem; color: #555; }
+
+    /* --- show images at their ORIGINAL size in the visualization section --- */
+    .scrollbox {
+      overflow-x: auto;       /* horizontal scroll if image is wider than the page */
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,.06);
+      padding: 12px;
+    }
+    .original-img {
+      max-width: none !important;   /* do NOT scale down */
+      width: auto;                  /* use intrinsic width */
+      height: auto;                 /* use intrinsic height */
+      display: block;
+    }
+    .img-meta {
+      font-size: 12px;
+      color: #666;
+      margin-top: 6px;
+    }
+
     @media (prefers-color-scheme: dark) {
-      .card { border-color: #333; background: #111; box-shadow: none; }
+      .card, .scrollbox { border-color: #333; background: #111; box-shadow: none; }
       footer { color: #bbb; }
+      .img-meta { color: #aaa; }
     }
   </style>
 </head>
@@ -88,25 +116,33 @@ training various models using our dataset..</p>
     </div>
   </section>
 
-  <!-- Data Visualization Images -->
+  <!-- Data Visualization Images at ORIGINAL size -->
   <section id="visualization">
     <h2>Data Visualization</h2>
-    <div class="grid small">
-      <figure class="card">
-        <img src="images/bev.png" alt="Bird’s-eye view visualization" />
-        <figcaption>BEV Visualization</figcaption>
-      </figure>
 
-      <figure class="card">
-        <img src="images/front.png" alt="Front camera visualization" />
-        <figcaption>Front Camera</figcaption>
-      </figure>
+    <figure style="margin-bottom:16px;">
+      <div class="scrollbox">
+        <img class="original-img" src="images/bev.png" alt="Bird’s-eye view visualization" />
+      </div>
+      <figcaption>BEV Visualization</figcaption>
+      <div class="img-meta"><a href="images/bev.png" target="_blank" rel="noopener">Open full size</a></div>
+    </figure>
 
-      <figure class="card">
-        <img src="images/select_episode.png" alt="Episode selection UI" />
-        <figcaption>Select Episode UI</figcaption>
-      </figure>
-    </div>
+    <figure style="margin-bottom:16px;">
+      <div class="scrollbox">
+        <img class="original-img" src="images/front.png" alt="Front camera visualization" />
+      </div>
+      <figcaption>Front Camera</figcaption>
+      <div class="img-meta"><a href="images/front.png" target="_blank" rel="noopener">Open full size</a></div>
+    </figure>
+
+    <figure>
+      <div class="scrollbox">
+        <img class="original-img" src="images/select_episode.png" alt="Episode selection UI" />
+      </div>
+      <figcaption>Select Episode UI</figcaption>
+      <div class="img-meta"><a href="images/select_episode.png" target="_blank" rel="noopener">Open full size</a></div>
+    </figure>
   </section>
 
   <section id="download">
