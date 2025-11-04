@@ -118,15 +118,33 @@
   <!-- OVERVIEW -->
   <section class="section" id="overview">
     <div class="container">
-      <h2>Overview</h2>
+      <h2>Abstract</h2>
       <div class="grid grid-2" style="align-items:start">
         <div>
           <p>
-            Collecting a high-quality dataset is a critical task that demands meticulous attention to detail.
-            To support end-to-end autonomous driving research we collected a dataset of over <strong>2.85 million frames</strong>
-            using the CARLA simulation environment for diverse Leaderboard 2.0 challenge scenarios. The dataset supports
-            planning, dynamic object detection, lane divider detection, centerline detection, traffic light recognition,
-            and prediction tasks.
+            Collecting a high-quality dataset is a critical task that demands meticulous attention
+            to detail, as overlooking certain aspects can render the entire dataset unusable.
+            Autonomous driving challenges remain a prominent area of research, requiring
+            further exploration to enhance the perception and planning performance of vehicles.
+            However, existing datasets are often incomplete. For instance, datasets that include
+            perception information generally lack planning data, while planning datasets typi-
+            cally consist of extensive driving sequences where the ego vehicle predominantly
+            drives forward, offering limited behavioral diversity. The CARLA Leaderboard 2.0
+            challenge, providing a diverse set of scenarios to address the long-tail problem in
+            autonomous driving, has emerged as a valuable alternative platform for developing
+            perception and planning models. Nevertheless, existing datasets collected on this
+            platform present certain limitations. Some datasets appear to be tailored primarily
+            for limited sensor configuration, with particular sensor configurations. Additionally,
+            in some datasets, the expert policies used for data collection exhibit suboptimal
+            driving behaviors, such as oscillations. To support end-to-end autonomous driving
+            research, we have collected a new dataset comprising over <strong>2.85 million frames</strong>
+            using the CARLA simulation environment for the diverse Leaderboard 2.0 chal-
+            lenge scenarios, making it the largest dataset in the literature to the best of our
+            knowledge. Our dataset is designed not only for planning tasks but also supports
+            dynamic object detection, lane divider detection, centerline detection, traffic light
+            recognition, and prediction tasks. Furthermore, we demonstrate its versatility by
+            training various models using our dataset.
+            
           </p>
 
           <ul style="margin-top:12px;color:var(--muted)">
@@ -203,45 +221,6 @@
     </div>
   </section>
 
-  <!-- DOWNLOAD / TEX READER -->
-  <section class="section" id="download">
-    <div class="container">
-      <h2>Download & Read LaTeX (.tex)</h2>
-
-      <div class="grid grid-2" style="align-items:start">
-        <div>
-          <div class="card">
-            <p>Links and instructions for accessing the dataset, paper, and code.</p>
-            <ul style="color:var(--muted)">
-              <li><a href="#" target="_blank">Dataset (link placeholder)</a></li>
-              <li><a href="#" target="_blank">Code repo (link placeholder)</a></li>
-              <li><a href="#" target="_blank">Paper PDF (link placeholder)</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div>
-          <div class="card">
-            <strong>Read a .tex file locally</strong>
-            <p style="margin-top:8px;color:var(--muted)">Choose a LaTeX (.tex) file and view its source here. You can also download the displayed file.</p>
-
-            <div class="tex-reader" style="margin-top:12px">
-              <input id="texInput" type="file" accept=".tex" />
-              <div class="tex-actions">
-                <button id="downloadTexBtn" class="btn btn-primary" disabled>⬇️ Download .tex</button>
-                <button id="clearTexBtn" class="btn btn-secondary" type="button">Clear</button>
-              </div>
-            </div>
-
-            <div style="margin-top:12px">
-              <div id="texContent" class="tex-display" aria-live="polite">No .tex file loaded.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
 
   <!-- CITATION -->
   <section class="section" id="citation">
