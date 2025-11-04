@@ -12,6 +12,7 @@
     nav a:hover { text-decoration: underline; }
     img, video { max-width: 100%; height: auto; display: block; }
     .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); }
+    .grid.small { grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
     .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 12px; box-shadow: 0 2px 6px rgba(0,0,0,.06); background: #fff; }
     figure { margin: 0; }
     figcaption { font: 600 14px/1.3 system-ui, sans-serif; margin-top: 8px; }
@@ -29,6 +30,7 @@
     <nav>
       <a href="#overview">Overview</a>
       <a href="#videos">Videos</a>
+      <a href="#visualization">Data Visualization</a>
       <a href="#download">Download</a>
       <a href="#citation">Citation</a>
       <a href="#team">Team</a>
@@ -59,7 +61,7 @@ knowledge. Our dataset is designed not only for planning tasks but also supports
 dynamic object detection, lane divider detection, centerline detection, traffic light
 recognition, and prediction tasks. Furthermore, we demonstrate its versatility by
 training various models using our dataset..</p>
-    <div class="grid">
+    <div class="grid small">
       <img src="images/teaser.png" alt="TaCarla teaser" />
       <img src="images/sample.png" alt="Sample visualization" />
     </div>
@@ -82,6 +84,27 @@ training various models using our dataset..</p>
           <source src="videos/Town12_radar_StaticCutIn.mp4" type="video/mp4" />
         </video>
         <figcaption>Static Cut-In</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Data Visualization Images -->
+  <section id="visualization">
+    <h2>Data Visualization</h2>
+    <div class="grid small">
+      <figure class="card">
+        <img src="images/bev.png" alt="Bird’s-eye view visualization" />
+        <figcaption>BEV Visualization</figcaption>
+      </figure>
+
+      <figure class="card">
+        <img src="images/front.png" alt="Front camera visualization" />
+        <figcaption>Front Camera</figcaption>
+      </figure>
+
+      <figure class="card">
+        <img src="images/select_episode.png" alt="Episode selection UI" />
+        <figcaption>Select Episode UI</figcaption>
       </figure>
     </div>
   </section>
