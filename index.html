@@ -73,11 +73,10 @@
     .image-modal.active{display:flex}
     .close-modal{position:absolute;top:20px;right:24px;color:#fff;font-size:28px;cursor:pointer}
 
-    /* tex reader */
-    .tex-reader{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-    .tex-display{white-space:pre-wrap;background:#0f172a;color:#e6eefc;padding:12px;border-radius:8px;overflow:auto;max-height:360px;width:100%}
-    .tex-actions{display:flex;gap:8px;align-items:center}
-    .btn-file{padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:white;cursor:pointer}
+    /* tex/abstract display */
+    .tex-card { display:block; padding:16px; border-radius:12px; border:1px solid var(--border); background:var(--card); }
+    .tex-title { font-weight:700; margin-bottom:8px; }
+    .tex-content { white-space:pre-wrap; color: #0f172a; max-height:420px; overflow:auto; font-size:15px; }
 
     footer.footer{padding:24px 0;text-align:center;color:var(--muted)}
 
@@ -103,51 +102,31 @@
           <span class="author">TaCarla Research Team</span>
           <span class="author">CARLA Leaderboard 2.0</span>
         </div>
-        <div class="affiliations">
-        </div>
+        <div class="affiliations"></div>
 
         <div class="action-buttons">
           <a href="#download" class="btn btn-primary">📥 Download</a>
           <a href="#citation" class="btn btn-secondary">📋 Cite</a>
           <a href="#visualization" class="btn btn-secondary">🖼️ Visualization</a>
-          <!-- ADDED: External Data Visualization link (opens in new tab) -->
           <a href="https://github.com/atg93/TaCarla-Visualization" class="btn btn-secondary" target="_blank" rel="noopener">📊 Data Visualization</a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- OVERVIEW -->
+  <!-- OVERVIEW: ABSTRACT LOADED FROM Abstract.tex -->
   <section class="section" id="overview">
     <div class="container">
       <h2>Abstract</h2>
+
       <div class="grid grid-2" style="align-items:start">
         <div>
-          <p>
-            Collecting a high-quality dataset is a critical task that demands meticulous attention
-            to detail, as overlooking certain aspects can render the entire dataset unusable.
-            Autonomous driving challenges remain a prominent area of research, requiring
-            further exploration to enhance the perception and planning performance of vehicles.
-            However, existing datasets are often incomplete. For instance, datasets that include
-            perception information generally lack planning data, while planning datasets typi-
-            cally consist of extensive driving sequences where the ego vehicle predominantly
-            drives forward, offering limited behavioral diversity. The CARLA Leaderboard 2.0
-            challenge, providing a diverse set of scenarios to address the long-tail problem in
-            autonomous driving, has emerged as a valuable alternative platform for developing
-            perception and planning models. Nevertheless, existing datasets collected on this
-            platform present certain limitations. Some datasets appear to be tailored primarily
-            for limited sensor configuration, with particular sensor configurations. Additionally,
-            in some datasets, the expert policies used for data collection exhibit suboptimal
-            driving behaviors, such as oscillations. To support end-to-end autonomous driving
-            research, we have collected a new dataset comprising over <strong>2.85 million frames</strong>
-            using the CARLA simulation environment for the diverse Leaderboard 2.0 chal-
-            lenge scenarios, making it the largest dataset in the literature to the best of our
-            knowledge. Our dataset is designed not only for planning tasks but also supports
-            dynamic object detection, lane divider detection, centerline detection, traffic light
-            recognition, and prediction tasks. Furthermore, we demonstrate its versatility by
-            training various models using our dataset.
-            
-          </p>
+          <!-- Abstract will be loaded from Abstract.tex at runtime.
+               Make sure Abstract.tex is served in the same directory as this HTML file. -->
+          <div id="abstract-from-tex" class="tex-card" aria-live="polite">
+            <div class="tex-title">Abstract (loaded from <code>Abstract.tex</code>)</div>
+            <div id="abstract-tex-content" class="tex-content">Loading abstract…</div>
+          </div>
 
           <ul style="margin-top:12px;color:var(--muted)">
             <li>Multi-sensor: Camera, BEV, LiDAR-ready design</li>
@@ -163,7 +142,6 @@
               <a class="btn btn-secondary" href="#videos">Videos</a>
               <a class="btn btn-secondary" href="#visualization">Visuals</a>
               <a class="btn btn-secondary" href="#download">Download</a>
-              <!-- ADDED: GitHub visualization link also in Quick links -->
               <a class="btn btn-secondary" href="https://github.com/atg93/TaCarla-Visualization" target="_blank" rel="noopener">📊 Visualization (GitHub)</a>
             </div>
           </div>
@@ -230,7 +208,6 @@
     </div>
   </section>
 
-
   <!-- CITATION -->
   <section class="section" id="citation">
     <div class="container">
@@ -266,9 +243,11 @@
     <img id="modalImage" src="" alt="Full size" />
   </div>
 
-  <!-- Script: image modal, tex reader, copy citation -->
+  <!-- SCRIPTS -->
   <script>
-    // Image modal: click image to open full-size in modal
+    /* -----------------------
+       Image modal: click image to open full-size in modal
+       ----------------------- */
     document.querySelectorAll('img[data-full]').forEach(img => {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', () => {
@@ -293,70 +272,63 @@
       }
     });
 
-    // COPY CITATION
+    /* -----------------------
+       Copy citation button
+       ----------------------- */
     document.getElementById('copyCitation').addEventListener('click', async () => {
       const text = document.getElementById('citation-text').innerText.trim();
       try {
         await navigator.clipboard.writeText(text);
-        document.getElementById('copyCitation').textContent = '✅ Copied!';
-        setTimeout(() => document.getElementById('copyCitation').textContent = '📋 Copy Citation', 1500);
+        const btn = document.getElementById('copyCitation');
+        btn.textContent = '✅ Copied!';
+        setTimeout(() => btn.textContent = '📋 Copy Citation', 1500);
       } catch (err) {
-        alert('Could not copy to clipboard. Here is the citation:\\n\\n' + text);
+        alert('Could not copy to clipboard. Here is the citation:\n\n' + text);
       }
     });
 
-    // TEX READER: read .tex file and show contents, allow download
-    const texInput = document.getElementById('texInput');
-    const texContent = document.getElementById('texContent');
-    const downloadBtn = document.getElementById('downloadTexBtn');
-    const clearBtn = document.getElementById('clearTexBtn');
-    let currentTexBlobUrl = null;
-    let currentTexName = 'document.tex';
+    /* -----------------------
+       Load Abstract.tex at runtime
+       - Tries to extract \begin{abstract}...\end{abstract}
+       - Falls back to full file text
+       Notes:
+       * Abstract.tex must be in the same public directory as this HTML when served.
+       * If you host on GitHub Pages or a static server, upload Abstract.tex alongside index.html.
+       ----------------------- */
+    (function loadAbstract() {
+      const targetEl = document.getElementById('abstract-tex-content');
+      if (!targetEl) return;
+      fetch('Abstract.tex')
+        .then(resp => {
+          if (!resp.ok) throw new Error('Could not fetch Abstract.tex: ' + resp.status + ' ' + resp.statusText);
+          return resp.text();
+        })
+        .then(text => {
+          // Attempt to extract an abstract environment
+          const envMatch = text.match(/\\begin\{abstract\}([\s\S]*?)\\end\{abstract\}/m);
+          let display = envMatch ? envMatch[1].trim() : text.trim();
 
-    if (texInput) {
-      texInput.addEventListener('change', (ev) => {
-        const file = ev.target.files && ev.target.files[0];
-        if (!file) return;
-        if (!file.name.endsWith('.tex')) {
-          alert('Please select a .tex file');
-          return;
-        }
-        currentTexName = file.name;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const text = e.target.result;
-          if (texContent) texContent.textContent = text;
-          if (currentTexBlobUrl) { URL.revokeObjectURL(currentTexBlobUrl); currentTexBlobUrl = null; }
-          const blob = new Blob([text], {type: 'text/x-tex'});
-          currentTexBlobUrl = URL.createObjectURL(blob);
-          if (downloadBtn) downloadBtn.disabled = false;
-        };
-        reader.readAsText(file);
-      });
-    }
+          // Remove common LaTeX commands that are safe to drop for display
+          // (simple heuristics — not a full LaTeX parser)
+          display = display
+            .replace(/\\cite\{[^\}]*\}/g, '')         // remove \cite{...}
+            .replace(/\\ref\{[^\}]*\}/g, '')          // remove \ref{...}
+            .replace(/\\[a-zA-Z]+\*?(?:\[[^\]]*\])?(?:\{[^\}]*\})?/g, '') // drop other commands like \emph{...}
+            .replace(/\$\$?([\s\S]*?)\$\$?/g, '')     // drop simple inline/display math
+            .replace(/\{\\\}/g, '')                  // cleanup escaped braces
+            .trim();
 
-    if (downloadBtn) {
-      downloadBtn.addEventListener('click', () => {
-        if (!currentTexBlobUrl) return;
-        const a = document.createElement('a');
-        a.href = currentTexBlobUrl;
-        a.download = currentTexName;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      });
-    }
+          // If the extracted text is empty, show a helpful note
+          if (!display) display = 'Abstract appears to be empty after removing LaTeX commands. Please check Abstract.tex.';
 
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        if (texInput) texInput.value = '';
-        if (texContent) texContent.textContent = 'No .tex file loaded.';
-        if (downloadBtn) downloadBtn.disabled = true;
-        if (currentTexBlobUrl) { URL.revokeObjectURL(currentTexBlobUrl); currentTexBlobUrl = null; }
-      });
-    }
+          targetEl.textContent = display;
+        })
+        .catch(err => {
+          targetEl.textContent = 'Error loading Abstract.tex: ' + err.message + '\n\n(Confirm that Abstract.tex is available in the same folder as this HTML on the server.)';
+        });
+    })();
 
-    // Enable keyboard Esc to close modal
+    // Enable ESC key to close modal
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         const modal = document.getElementById('imageModal');
