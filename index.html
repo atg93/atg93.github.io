@@ -5,54 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TaCarla: Autonomous Driving Benchmark</title>
 
-  <!-- Optional external stylesheet -->
+  <!-- Theme CSS (your style.css that I produced earlier) -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- KaTeX (for fast math rendering) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-+2h6k0r6pF2Xv2rVx2+I5J3f3xq4o2z5A9t6y3Gd1bQ2Yx8a1G4f6o9X2z0v1yKp" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-0v2jC8n8xvYQy3k9b4Nq6q2x5r7c1p2m3s8z0b9v1w5d4y6t7a3p9c2l8r5u0f1" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-N7V5n4VY0hQeD2q1uK6p3M3nB2xY6z4f8t3s5w6q1r2p8n5c1v4s7k2j6m9b0c3" crossorigin="anonymous"></script>
+  <!-- KaTeX for fast math rendering + auto-render extension -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
 
-  <!-- MathJax fallback (only used if KaTeX fails); loaded deferred -->
+  <!-- MathJax fallback -->
   <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <style>
-    /* Minimal TopoBDA-like style (use style.css for fuller control) */
-    :root{
-      --bg: #ffffff;
-      --muted: #6b7280;
-      --accent: #2563eb;
-      --card: #f8fafc;
-      --border: #e6eefc;
-      --radius: 12px;
-    }
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin:0; color:#0f172a; background:var(--bg)}
-    .container{max-width:1100px;margin:0 auto;padding:28px}
-    header.hero{background:linear-gradient(180deg, rgba(37,99,235,0.06), transparent 60%); padding:36px 0; border-bottom:1px solid var(--border)}
-    .hero-title{font-size:30px;margin:0}
-    .hero-subtitle{color:var(--muted);margin:6px 0 0 0}
-    .authors, .affiliations{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);margin-top:10px}
-    .action-buttons{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
-    .btn{padding:10px 14px;border-radius:10px;text-decoration:none;border:1px solid transparent;font-weight:600;display:inline-flex;align-items:center;gap:8px}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-secondary{background:transparent;color:var(--accent);border-color:var(--border)}
-    section.section{padding:40px 0;border-bottom:1px solid var(--border)}
-    h2{margin:0 0 16px 0;font-size:22px}
-    .abstract-content p{margin:0 0 12px 0;line-height:1.55}
-    .tex-card{background:var(--card);border:1px solid var(--border);padding:14px;border-radius:10px}
-    .tex-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:700}
-    .tex-content{white-space:pre-wrap;overflow:auto;max-height:520px}
-    .small-muted{color:var(--muted);font-size:13px}
-    .figure-container{margin-top:18px}
-    img,video{max-width:100%;height:auto;border-radius:8px}
-    .citation-box{background:#f8f9ff;padding:12px;border-left:4px solid #667eea;border-radius:8px;display:flex;gap:12px;align-items:flex-start}
-    footer.footer{padding:22px 0;text-align:center;color:var(--muted)}
-    .image-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:9999}
-    .image-modal.active{display:flex}
-    .image-modal img{max-width:95%;max-height:90%;border-radius:8px}
-    .close-modal{position:absolute;right:20px;top:16px;color:#fff;font-size:28px;cursor:pointer}
-    @media (max-width:900px){ .container{padding:18px} }
+    /* Small inline adjustments for safety (most styles in style.css) */
+    .tex-content { white-space: pre-wrap; }
   </style>
 </head>
 <body>
@@ -81,7 +47,7 @@
     </div>
   </header>
 
-  <!-- ABSTRACT: inlined from uploaded Abstract.tex -->
+  <!-- ABSTRACT: inlined from Abstract.tex -->
   <section class="section" id="abstract">
     <div class="container">
       <h2>Abstract</h2>
@@ -89,13 +55,8 @@
       <div class="tex-card" aria-live="polite">
         <div class="tex-title">
           <span>Abstract (inlined from <code>Abstract.tex</code>)</span>
-          <div>
-            <a class="btn btn-secondary" href="chapter/Abstract.tex" target="_blank" rel="noopener">Open raw</a>
-          </div>
         </div>
 
-        <!-- This content was read from /mnt/data/Abstract.tex in your environment and inlined here.
-             If you want a more exact verbatim paste replace this block with your full .tex content. -->
         <div id="abstract-tex-content" class="tex-content">
 Collecting a high-quality dataset is a critical task that demand...ominantly drives forward, offering limited behavioral diversity.
 The CARLA Leaderboard 2.0 challenge, providing a diverse set of ...ion exhibit suboptimal driving behaviors, such as oscillations. 
@@ -104,12 +65,12 @@ To support end-to-end autonomous driving research, we have colle...e its versati
       </div>
 
       <p class="small-muted" style="margin-top:10px">
-        Note: math expressions in the Abstract will be rendered by KaTeX (fast). If KaTeX can't render a specific construct, MathJax is available as a fallback.
+        Note: LaTeX math in the Abstract will be rendered by KaTeX. MathJax is available as a fallback for any constructs KaTeX cannot render.
       </p>
     </div>
   </section>
 
-  <!-- EXPERIMENTS: try to inline if present, otherwise fetch at runtime -->
+  <!-- EXPERIMENTS: inlined if present, otherwise helpful placeholder -->
   <section class="section" id="experiments">
     <div class="container">
       <h2>Experiments</h2>
@@ -117,18 +78,15 @@ To support end-to-end autonomous driving research, we have colle...e its versati
       <div class="tex-card">
         <div class="tex-title">
           <span>Experiments (from <code>chapter/Experiments.tex</code>)</span>
-          <div>
-            <a id="open-experiments-raw" class="btn btn-secondary" href="chapter/Experiments.tex" target="_blank" rel="noopener">Open raw</a>
-          </div>
         </div>
 
-        <div id="experiments-tex-content" class="tex-content small-muted">
-          Loading Experiments...
+        <div id="experiments-tex-content" class="tex-content">
+Loading Experiments... (attempting to inline chapter/Experiments.tex)
         </div>
       </div>
 
       <p class="small-muted" style="margin-top:10px">
-        If Experiments content doesn't appear, upload/place <code>chapter/Experiments.tex</code> in your site public folder.
+        If Experiments content doesn't appear, place <code>chapter/Experiments.tex</code> in your site's public folder so it can be read and inlined automatically.
       </p>
     </div>
   </section>
@@ -137,7 +95,6 @@ To support end-to-end autonomous driving research, we have colle...e its versati
   <section class="section" id="visualization">
     <div class="container">
       <h2>Visualization</h2>
-
       <p class="small-muted">
         Explore interactive visualization tools: <a href="https://github.com/atg93/TaCarla-Visualization" target="_blank" rel="noopener">TaCarla-Visualization (GitHub)</a>
       </p>
@@ -181,135 +138,122 @@ To support end-to-end autonomous driving research, we have colle...e its versati
     <img id="modalImage" src="" alt="Full size" />
   </div>
 
-  <!-- Inline script: loads experiments .tex, inlines, strips LaTeX commands lightly and renders math via KaTeX auto-render.
-       If KaTeX auto-render isn't available, MathJax will typeset the page (deferred). -->
+  <!-- Inline script: attempt to fetch Experiments.tex from chapter/ and render math -->
   <script>
-    // utility: simple LaTeX-to-plain stripping (heuristic)
-    function stripTexForHTML(tex) {
-      // remove comments
-      let s = tex.replace(/%[^\n]*/g, '');
-      // try to extract abstract environment if present
-      s = s.replace(/\\begin\{abstract\}([\s\S]*?)\\end\{abstract\}/m, (m, g1) => g1);
-      // remove common commands but keep math delimiters for KaTeX/MathJax
-      s = s.replace(/\\(cite|ref|label)\{[^\}]*\}/g, '');
-      // remove begin/end of environments (except math)
-      s = s.replace(/\\(begin|end)\{[^\}]*\}/g, '');
-      // preserve inline $...$ and $$...$$; remove other commands gently
-      s = s.replace(/\\[a-zA-Z]+\*?(?:\[[^\]]*\])?(?:\{[^\}]*\})?/g, '');
-      // collapse multiple blank lines
+    // Lightweight LaTeX stripping (keeps $..$ and $$..$$ for math renderers)
+    function stripTex(txt){
+      if (!txt) return '';
+      let s = txt.replace(/%[^\n]*/g, ''); // remove LaTeX comments
+      // remove begin/end abstract if present (we already inline full abstract)
+      s = s.replace(/\\begin\{abstract\}([\s\S]*?)\\end\{abstract\}/m, (m,g1)=>g1);
+      // remove commonly safe commands but keep math delimiters
+      s = s.replace(/\\(cite|ref|label)\{[^\}]*\}/g,'');
+      s = s.replace(/\\(begin|end)\{[^\}]*\}/g,'');
+      // remove other backslash commands but keep $ and $$ intact
+      s = s.replace(/\\[a-zA-Z]+\*?(?:\[[^\]]*\])?(?:\{[^\}]*\})?/g,'');
       s = s.replace(/\n{3,}/g, '\n\n');
       return s.trim();
     }
 
-    // Load experiments tex (tries several common paths)
-    async function loadExperimentsTex() {
+    // render math in an element using KaTeX auto-render when available; fallback to MathJax
+    function renderMathInElementIfAvailable(rootEl){
+      if (!rootEl) return;
+      if (window.renderMathInElement){
+        try {
+          renderMathInElement(rootEl, {
+            delimiters: [
+              {left: '\\\\(', right: '\\\\)', display: false},
+              {left: '\\\\[', right: '\\\\]', display: true},
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ],
+            ignoredTags: ['script','noscript','style','textarea','pre','code']
+          });
+          return;
+        } catch (e){
+          console.warn('KaTeX render failed. Falling back to MathJax if available.', e);
+        }
+      }
+      if (window.MathJax && MathJax.typesetPromise){
+        MathJax.typesetPromise([rootEl]).catch((err)=>console.warn('MathJax typeset failed', err));
+      }
+    }
+
+    // Try to fetch experiments tex from common locations and inline it
+    async function inlineExperiments(){
       const el = document.getElementById('experiments-tex-content');
       if (!el) return;
-      const candidates = ['chapter/Experiments.tex', 'chapter/experiments.tex', 'Experiments.tex', 'experiments.tex'];
-      el.textContent = 'Loading Experiments...';
-      for (const path of candidates) {
+      const candidates = ['chapter/Experiments.tex','chapter/experiments.tex','Experiments.tex','experiments.tex'];
+      for (const path of candidates){
         try {
           const resp = await fetch(path);
           if (!resp.ok) continue;
           const txt = await resp.text();
-          const stripped = stripTexForHTML(txt);
-          el.textContent = stripped || '(Experiments file was empty after stripping LaTeX.)';
-          // render math in the new element (if KaTeX auto-render is available)
-          runMathRenderingOn(el);
-          // update open raw link
-          const openLink = document.getElementById('open-experiments-raw');
-          if (openLink) { openLink.href = path; openLink.style.display = 'inline-block'; }
+          const stripped = stripTex(txt);
+          el.textContent = stripped || '(Experiments.tex was empty after stripping LaTeX.)';
+          renderMathInElementIfAvailable(el);
           return;
-        } catch (err) {
-          // try next candidate
+        } catch (err){
+          // ignore and try next
         }
       }
-      el.textContent = 'Experiments.tex not found in chapter/ or site root. Upload it to chapter/Experiments.tex to inline automatically.';
+      // If none found, show friendly message
+      el.textContent = 'Experiments.tex not found in chapter/ or site root. Upload/place chapter/Experiments.tex to have it inlined automatically.';
     }
 
-    // Run KaTeX auto-render if available; otherwise MathJax will typeset automatically when it loads.
-    function runMathRenderingOn(rootEl) {
-      if (window.renderMathInElement) {
-        try {
-          // configure delimiters recognized (inline and display)
-          renderMathInElement(rootEl, {
-            delimiters: [
-              {left: '\\\\\\(', right: '\\\\\\)', display: false},
-              {left: '\\\\\\[', right: '\\\\\\]', display: true},
-              {left: '\\$', right: '\\$', display: false},
-              {left: '\\$\\$', right: '\\$\\$', display: true}
-            ],
-            // ignore tags that should not be processed
-            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-          });
-        } catch (e) {
-          // If KaTeX throws, fallback to MathJax (MathJax will typeset automatically when present)
-          console.warn('KaTeX render failed — MathJax may handle rendering as fallback.', e);
-        }
-      } else {
-        // KaTeX not available; MathJax (if loaded) will process the page automatically
-        // We can trigger MathJax typeset manually if needed:
-        if (window.MathJax && MathJax.typesetPromise) {
-          MathJax.typesetPromise([rootEl]).catch(function (err) { console.warn('MathJax typeset failed', err); });
-        }
-      }
-    }
-
-    // Setup image modal interactions
-    function setupImageModal() {
-      document.querySelectorAll('img[data-full]').forEach(img => {
+    // image modal
+    function setupImageModal(){
+      document.querySelectorAll('img[data-full]').forEach(img=>{
         img.style.cursor = 'zoom-in';
-        img.addEventListener('click', () => {
+        img.addEventListener('click', ()=>{
           const modal = document.getElementById('imageModal');
           const modalImg = document.getElementById('modalImage');
-          modalImg.src = img.getAttribute('data-full') || img.src;
+          modalImg.src = img.dataset.full || img.src;
           modal.classList.add('active');
-          modal.setAttribute('aria-hidden', 'false');
+          modal.setAttribute('aria-hidden','false');
         });
       });
       const closeBtn = document.getElementById('closeModal');
-      if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-          const modal = document.getElementById('imageModal');
-          modal.classList.remove('active');
-          modal.setAttribute('aria-hidden', 'true');
-          document.getElementById('modalImage').src = '';
-        });
-      }
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') {
-        const modal = document.getElementById('imageModal'); if (modal && modal.classList.contains('active')) {
-          modal.classList.remove('active'); modal.setAttribute('aria-hidden','true'); document.getElementById('modalImage').src = '';
+      if (closeBtn) closeBtn.addEventListener('click', ()=>{
+        const modal = document.getElementById('imageModal');
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden','true');
+        document.getElementById('modalImage').src = '';
+      });
+      document.addEventListener('keydown', (e)=>{ if (e.key==='Escape'){
+        const modal=document.getElementById('imageModal'); if(modal && modal.classList.contains('active')){
+          modal.classList.remove('active'); modal.setAttribute('aria-hidden','true'); document.getElementById('modalImage').src='';
         }
       }});
     }
 
-    // Copy citation
-    function setupCopyCitation() {
+    // copy citation
+    function setupCopyCitation(){
       const btn = document.getElementById('copyCitation');
       if (!btn) return;
-      btn.addEventListener('click', async () => {
+      btn.addEventListener('click', async ()=>{
         const text = document.getElementById('citation-text').innerText;
         try {
           await navigator.clipboard.writeText(text);
           btn.textContent = '✅ Copied!';
           setTimeout(()=> btn.textContent = '📋 Copy Citation', 1500);
-        } catch (err) {
+        } catch (err){
           alert('Could not copy automatically. Here is the citation:\\n\\n' + text);
         }
       });
     }
 
-    // After DOM ready:
-    document.addEventListener('DOMContentLoaded', () => {
+    // On DOM ready
+    document.addEventListener('DOMContentLoaded', ()=>{
       setupImageModal();
       setupCopyCitation();
 
-      // Attempt to render math in the already-inlined Abstract block
+      // Render math in inlined abstract block (abstract is inlined in HTML)
       const absEl = document.getElementById('abstract-tex-content');
-      if (absEl) runMathRenderingOn(absEl);
+      renderMathInElementIfAvailable(absEl);
 
-      // Try to fetch and inline experiments.tex (multiple candidate paths)
-      loadExperimentsTex();
+      // Attempt to inline experiments.tex from server
+      inlineExperiments();
     });
   </script>
 </body>
