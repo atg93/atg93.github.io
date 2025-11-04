@@ -66,13 +66,19 @@
     .viz-gallery img { width:100%; height:auto; border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,0.04); cursor:zoom-in; display:block; }
     .viz-caption { margin-top:8px; font-size:0.95rem; color:#444; }
 
+    /* Video gallery (new) */
+    .video-gallery { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; align-items:flex-start; margin-top:16px; }
+    .video-gallery .video-item { flex: 1 1 300px; max-width: 480px; text-align:center; background:#fff; padding:8px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.04); }
+    .video-gallery video { width:100%; height:auto; border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,0.04); display:block; }
+    .video-caption { margin-top:8px; font-size:0.95rem; color:#444; }
+
     /* Traffic-light samples */
     .tl-samples { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; align-items:center; margin-top:12px; }
     .tl-samples img { width:48%; max-width:520px; border-radius:6px; box-shadow:0 6px 18px rgba(0,0,0,0.06); cursor:zoom-in; display:block; }
 
     /* Responsive tweaks */
     @media (max-width:920px){ .tl-samples img { width:60%; max-width:420px; } }
-    @media (max-width:720px){ .hero-title { font-size:1.6rem; } .container { padding:16px; } .viz-gallery .viz-item { max-width:100%; flex: 1 1 100%; } .results-table { font-size:0.88rem; } }
+    @media (max-width:720px){ .hero-title { font-size:1.6rem; } .container { padding:16px; } .viz-gallery .viz-item { max-width:100%; flex: 1 1 100%; } .results-table { font-size:0.88rem; } .video-gallery .video-item { max-width:100%; flex:1 1 100%; } }
   </style>
 </head>
 <body>
@@ -462,6 +468,27 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="viz-caption">Front Camera View</div>
         </div>
       </div>
+
+      <!-- NEW: Video gallery -->
+      <p class="small-muted" style="margin-top:18px">Two demonstration videos from the <code>videos/</code> folder.</p>
+      <div class="video-gallery" role="list">
+        <div class="video-item" role="listitem">
+          <video controls preload="metadata" poster="images/video1_poster.png">
+            <source src="videos/video1.mp4" type="video/mp4">
+            Your browser does not support the video tag. You can <a href="videos/video1.mp4">download video1.mp4</a> instead.
+          </video>
+          <div class="video-caption">Episode visualization — video1.mp4</div>
+        </div>
+
+        <div class="video-item" role="listitem">
+          <video controls preload="metadata" poster="images/video2_poster.png">
+            <source src="videos/video2.mp4" type="video/mp4">
+            Your browser does not support the video tag. You can <a href="videos/video2.mp4">download video2.mp4</a> instead.
+          </video>
+          <div class="video-caption">BEV + front view — video2.mp4</div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -539,7 +566,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
           btn.textContent = '✅ Copied!';
           setTimeout(()=> btn.textContent = '📋 Copy Citation', 1500);
         } catch (err){
-          alert('Could not copy automatically. Here is the citation:\\n\\n' + text);
+          alert('Could not copy automatically. Here is the citation:\n\n' + text);
         }
       });
     })();
