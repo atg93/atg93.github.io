@@ -119,12 +119,11 @@ To support end-to-end autonomous driving research, we have collected a new datas
     </div>
   </section>
 
-  <!-- Study Highlights (updated to five items per user) -->
+  <!-- Study Highlights (five items as requested) -->
   <section class="section" id="study-highlights">
     <div class="container">
       <h2>Study Highlights</h2>
       <div class="highlights-grid" role="list">
-
         <div class="highlight-card" role="listitem">
           <div class="highlight-icon">📦</div>
           <div class="highlight-body">
@@ -137,7 +136,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="highlight-icon">🏁</div>
           <div class="highlight-body">
             <h3>Benchmark</h3>
-            <p>Provides benchmark tasks for multiple autonomous-driving problems: <strong>object detection</strong>, <strong>lane detection</strong>, <strong>traffic light detection</strong>, and <strong>planning</strong>.</p>
+            <p>Provides benchmarks for multiple autonomous driving tasks: <strong>object detection</strong>, <strong>lane detection</strong>, <strong>traffic light detection</strong>, and <strong>planning</strong>.</p>
           </div>
         </div>
 
@@ -145,7 +144,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="highlight-icon">📝</div>
           <div class="highlight-body">
             <h3>Text</h3>
-            <p>Per-frame textual descriptions that explain the current situation of the ego vehicle (e.g., lane, speed, nearby hazards) to support behavior understanding and language-conditioned tasks.</p>
+            <p>Per-frame textual descriptions explaining the current situation of the ego vehicle (lane, speed, nearby hazards, etc.) to support behavior understanding and language-conditioned tasks.</p>
           </div>
         </div>
 
@@ -153,7 +152,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="highlight-icon">📊</div>
           <div class="highlight-body">
             <h3>Score</h3>
-            <p>A scene-level rarity score that measures how rare/unique the current scene is in the dataset — useful for curriculum learning and focused evaluation on rare events.</p>
+            <p>A scene-level rarity score that measures how rare or unique a scene is in the dataset — useful for curriculum learning and focused evaluation on rare events.</p>
           </div>
         </div>
 
@@ -161,10 +160,9 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="highlight-icon">💾</div>
           <div class="highlight-body">
             <h3>Parquet data format</h3>
-            <p>All annotations and extracted features are provided in Parquet format for faster training & I/O performance and smooth integration with data pipelines.</p>
+            <p>Annotations and extracted features are provided in Parquet format for faster I/O and training throughput; integrates easily with modern data pipelines.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -221,11 +219,13 @@ To support end-to-end autonomous driving research, we have collected a new datas
         </figure>
 
         <figure class="figure" id="fig:bev_samples">
+          <!-- BEV image loaded from figures/ -->
           <img src="figures/bev_tacarla.png" alt="BEV results (figures/bev_tacarla.png)" data-full="figures/bev_tacarla.png" style="width:100%;max-width:900px;cursor:zoom-in;border-radius:6px;">
           <figcaption>Bird's Eye View (BEV) results — GT, Pred and overlay (image loaded from <code>figures/bev_tacarla.png</code>).</figcaption>
         </figure>
 
         <figure class="figure tl-samples" role="group" aria-label="Traffic light model outputs">
+          <!-- traffic light images from images/ -->
           <img src="images/tl_red.jpg" alt="Traffic light red example (images/tl_red.jpg)" data-full="images/tl_red.jpg">
           <img src="images/tl_green.jpg" alt="Traffic light green example (images/tl_green.jpg)" data-full="images/tl_green.jpg">
           <figcaption style="width:100%;margin-top:10px;text-align:center;">Outputs of the FCOS traffic light model (red and green examples).</figcaption>
@@ -253,18 +253,18 @@ To support end-to-end autonomous driving research, we have collected a new datas
         <h3>Planning</h3>
 
         <figure class="figure">
+          <!-- planning figure loaded from figures/ -->
           <img src="figures/planning.png" alt="Planning comparison (figures/planning.png)" data-full="figures/planning.png" style="width:100%;max-width:900px;border-radius:6px;">
           <figcaption>Waypoints from ground truth, PlanT, Transfuser, and DiffusionDrive (image loaded from <code>figures/planning.png</code>).</figcaption>
         </figure>
 
         <p>We trained Transfuser, DiffusionDrive and PlanT with standard settings (ResNet-34 backbone, camera + LiDAR). Open-loop (ADE/FDE/AHE/FHE) and closed-loop evaluations provided.</p>
-
       </article>
 
     </div>
   </section>
 
-  <!-- Visualization (images/ folder) -->
+  <!-- Visualization (images/ folder) - show in requested order -->
   <section class="section" id="visualization">
     <div class="container">
       <h2>Visualization</h2>
