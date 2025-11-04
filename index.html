@@ -119,7 +119,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
     </div>
   </section>
 
-  <!-- Study Highlights (five items as requested) -->
+  <!-- Study Highlights -->
   <section class="section" id="study-highlights">
     <div class="container">
       <h2>Study Highlights</h2>
@@ -128,7 +128,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="highlight-icon">📦</div>
           <div class="highlight-body">
             <h3>Largest Dataset</h3>
-            <p>It is the largest dataset collected for the CARLA Leaderboard 2.0 challenge — designed to cover diverse scenarios and long-tail events.</p>
+            <p>The largest dataset collected for the CARLA Leaderboard 2.0 challenge — covering many diverse scenarios and long-tail events.</p>
           </div>
         </div>
 
@@ -136,7 +136,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="highlight-icon">🏁</div>
           <div class="highlight-body">
             <h3>Benchmark</h3>
-            <p>Provides benchmarks for multiple autonomous driving tasks: <strong>object detection</strong>, <strong>lane detection</strong>, <strong>traffic light detection</strong>, and <strong>planning</strong>.</p>
+            <p>Provides benchmarks for multiple autonomous-driving tasks: <strong>object detection</strong>, <strong>lane detection</strong>, <strong>traffic light detection</strong>, and <strong>planning</strong>.</p>
           </div>
         </div>
 
@@ -144,7 +144,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="highlight-icon">📝</div>
           <div class="highlight-body">
             <h3>Text</h3>
-            <p>Per-frame textual descriptions explaining the current situation of the ego vehicle (lane, speed, nearby hazards, etc.) to support behavior understanding and language-conditioned tasks.</p>
+            <p>Per-frame textual descriptions that explain the current situation of the ego vehicle (lane, speed, nearby hazards) to support behavior understanding and language-conditioned tasks.</p>
           </div>
         </div>
 
@@ -152,7 +152,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
           <div class="highlight-icon">📊</div>
           <div class="highlight-body">
             <h3>Score</h3>
-            <p>A scene-level rarity score that measures how rare or unique a scene is in the dataset — useful for curriculum learning and focused evaluation on rare events.</p>
+            <p>A scene-level rarity score that measures how rare or unique the current scene is in the dataset — useful for curriculum learning and targeted evaluation on rare events.</p>
           </div>
         </div>
 
@@ -177,7 +177,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
         <h3>3D Object Detection</h3>
         <p>
           We employed a non-transformer-based architecture for multi-view BEV 3D object detection. The multi-view camera images
-          are processed by a RegNetY-800MF encoder with BiFPN; features ( /8, /16, /32 ) are projected to BEV using Lift-Splat.
+          are processed by RegNetY-800MF with BiFPN; features ( /8, /16, /32 ) are projected to BEV using Lift-Splat.
           Temporal frames are warped with egomotion and concatenated (like BevDet4D). BEV backbone is ResNet-based and task heads include RQR3D.
         </p>
 
@@ -219,13 +219,12 @@ To support end-to-end autonomous driving research, we have collected a new datas
         </figure>
 
         <figure class="figure" id="fig:bev_samples">
-          <!-- BEV image loaded from figures/ -->
+          <!-- BEV image placed in figures/ -->
           <img src="figures/bev_tacarla.png" alt="BEV results (figures/bev_tacarla.png)" data-full="figures/bev_tacarla.png" style="width:100%;max-width:900px;cursor:zoom-in;border-radius:6px;">
-          <figcaption>Bird's Eye View (BEV) results — GT, Pred and overlay (image loaded from <code>figures/bev_tacarla.png</code>).</figcaption>
+          <figcaption>Bird's Eye View (BEV) results — GT, Pred and overlay (image from <code>figures/bev_tacarla.png</code>).</figcaption>
         </figure>
 
         <figure class="figure tl-samples" role="group" aria-label="Traffic light model outputs">
-          <!-- traffic light images from images/ -->
           <img src="images/tl_red.jpg" alt="Traffic light red example (images/tl_red.jpg)" data-full="images/tl_red.jpg">
           <img src="images/tl_green.jpg" alt="Traffic light green example (images/tl_green.jpg)" data-full="images/tl_green.jpg">
           <figcaption style="width:100%;margin-top:10px;text-align:center;">Outputs of the FCOS traffic light model (red and green examples).</figcaption>
@@ -253,9 +252,9 @@ To support end-to-end autonomous driving research, we have collected a new datas
         <h3>Planning</h3>
 
         <figure class="figure">
-          <!-- planning figure loaded from figures/ -->
+          <!-- planning image placed in figures/ -->
           <img src="figures/planning.png" alt="Planning comparison (figures/planning.png)" data-full="figures/planning.png" style="width:100%;max-width:900px;border-radius:6px;">
-          <figcaption>Waypoints from ground truth, PlanT, Transfuser, and DiffusionDrive (image loaded from <code>figures/planning.png</code>).</figcaption>
+          <figcaption>Waypoints from ground truth, PlanT, Transfuser, and DiffusionDrive (image from <code>figures/planning.png</code>).</figcaption>
         </figure>
 
         <p>We trained Transfuser, DiffusionDrive and PlanT with standard settings (ResNet-34 backbone, camera + LiDAR). Open-loop (ADE/FDE/AHE/FHE) and closed-loop evaluations provided.</p>
@@ -264,7 +263,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
     </div>
   </section>
 
-  <!-- Visualization (images/ folder) - show in requested order -->
+  <!-- Visualization (images/ folder) -->
   <section class="section" id="visualization">
     <div class="container">
       <h2>Visualization</h2>
@@ -273,7 +272,7 @@ To support end-to-end autonomous driving research, we have collected a new datas
       <div class="viz-gallery" role="list">
         <div class="viz-item" role="listitem">
           <img src="images/select_episode.png" alt="Select Episode (images/select_episode.png)" data-full="images/select_episode.png" loading="lazy">
-          <div class="viz-caption">Select Episode (interface screenshot)</div>
+          <div class="viz-caption">Select Episode</div>
         </div>
 
         <div class="viz-item" role="listitem">
