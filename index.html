@@ -1,79 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TaCarla — Autonomous Driving Study</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TaCarla: Autonomous Driving Benchmark</title>
 
-  <style>
-    :root{
-      --bg: #ffffff;
-      --muted: #6b7280;
-      --accent: #2563eb;
-      --card: #f8fafc;
-      --border: #e6eefc;
-      --radius: 12px;
-      color-scheme: light dark;
-    }
-    *{box-sizing:border-box}
-    body{
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      margin:0;
-      background:var(--bg);
-      color:#0f172a;
-      line-height:1.5;
-    }
-    .container{max-width:1200px;margin:0 auto;padding:32px;}
-    header.hero{
-      background:linear-gradient(180deg, rgba(37,99,235,0.06), transparent 60%);
-      border-bottom:1px solid var(--border);
-      padding:40px 0;
-    }
-    .hero-content{display:flex;flex-direction:column;gap:18px}
-    .hero-title{font-size:32px;margin:0}
-    .hero-subtitle{margin:0;color:var(--muted)}
-    .authors, .affiliations{display:flex;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:14px}
-    .author{background:transparent;padding:2px 6px;border-radius:6px}
-    .action-buttons{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;text-decoration:none;border:1px solid transparent;font-weight:600}
-    .btn-primary{background:var(--accent);color:white}
-    .btn-secondary{background:transparent;color:var(--accent);border-color:var(--border)}
-
-    section.section{padding:40px 0;border-bottom:1px solid var(--border)}
-    h2{margin:0 0 16px 0;font-size:22px}
-    p{margin:0 0 12px 0}
-
-    .grid{display:grid;gap:16px}
-    .grid-2{grid-template-columns:repeat(2,1fr)}
-    .card{background:var(--card);padding:16px;border-radius:var(--radius);border:1px solid var(--border)}
-    img, video{max-width:100%;height:auto;display:block;border-radius:8px}
-    .figure-container{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
-    .figure-caption{color:var(--muted);font-size:14px}
-
-    .tex-card { display:block; padding:16px; border-radius:12px; border:1px solid var(--border); background:var(--card); }
-    .tex-title { font-weight:700; margin-bottom:8px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-    .tex-content { white-space:pre-wrap; color: #0f172a; max-height:420px; overflow:auto; font-size:15px; padding-top:6px; }
-    .tex-actions { display:flex; gap:8px; align-items:center; }
-
-    .small-muted { color:var(--muted); font-size:13px; }
-
-    footer.footer{padding:24px 0;text-align:center;color:var(--muted)}
-
-    .image-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:60}
-    .image-modal img{max-width:95%;max-height:90%;border-radius:8px}
-    .image-modal.active{display:flex}
-    .close-modal{position:absolute;top:20px;right:24px;color:#fff;font-size:28px;cursor:pointer}
-
-    @media (max-width:900px){
-      .grid-2{grid-template-columns:1fr}
-      .hero-content{padding:0 12px}
-      .container{padding:20px}
-    }
-  </style>
+  <!-- Link external stylesheet (adapt TopoBDA styles into style.css) -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- HEADER -->
+  <!-- Header -->
   <header class="hero">
     <div class="container">
       <div class="hero-content">
@@ -85,126 +21,170 @@
           <span class="author">CARLA Leaderboard 2.0</span>
         </div>
 
+        <div class="affiliations">
+          <span class="affiliation">CARLA Simulation — Leaderboard 2.0 Scenarios</span>
+        </div>
+
         <div class="action-buttons">
-          <a href="#download" class="btn btn-primary">📥 Download</a>
+          <!-- Replace paper link with your paper or dataset page if available -->
+          <a href="#download" class="btn btn-primary" target="_blank" rel="noopener">📥 Download</a>
           <a href="#citation" class="btn btn-secondary">📋 Cite</a>
-          <a href="#visualization" class="btn btn-secondary">🖼️ Visualization</a>
           <a href="https://github.com/atg93/TaCarla-Visualization" class="btn btn-secondary" target="_blank" rel="noopener">📊 Data Visualization</a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- OVERVIEW: ABSTRACT + EXPERIMENTS LOADED FROM chapter/ -->
-  <section class="section" id="overview">
+  <!-- Abstract -->
+  <section class="section" id="abstract">
     <div class="container">
-      <h2>Abstract & Experiments</h2>
+      <h2>Abstract</h2>
 
-      <div class="grid grid-2" style="align-items:start">
-        <!-- Abstract card (loads chapter/Abstract.tex) -->
-        <div>
-          <div id="abstract-from-tex" class="tex-card" aria-live="polite">
-            <div class="tex-title">
-              <span>Abstract (loaded from <code>chapter/Abstract.tex</code>)</span>
-              <div class="tex-actions">
-                <a id="open-abstract-raw" class="btn btn-secondary" href="chapter/Abstract.tex" target="_blank" rel="noopener">Open raw</a>
-              </div>
+      <div class="abstract-content">
+        <!-- The content will be loaded from chapter/Abstract.tex by script.js -->
+        <div class="tex-card">
+          <div class="tex-title">
+            <span>Abstract (from <code>chapter/Abstract.tex</code>)</span>
+            <div class="tex-actions">
+              <a class="btn btn-secondary" href="chapter/Abstract.tex" target="_blank" rel="noopener">Open raw</a>
             </div>
-            <div id="abstract-tex-content" class="tex-content small-muted">Loading Abstract...</div>
           </div>
-
-          <ul style="margin-top:12px;color:var(--muted)">
-            <li>Multi-sensor: Camera, BEV, LiDAR-ready design</li>
-            <li>Designed for perception + planning tasks</li>
-            <li>Large-scale and diverse scenarios to address long-tail behaviors</li>
-          </ul>
-        </div>
-
-        <!-- Experiments card (loads chapter/Experiments.tex) -->
-        <div>
-          <div id="experiments-from-tex" class="tex-card" aria-live="polite">
-            <div class="tex-title">
-              <span>Experiments (loaded from <code>chapter/Experiments.tex</code>)</span>
-              <div class="tex-actions">
-                <a id="open-experiments-raw" class="btn btn-secondary" href="chapter/Experiments.tex" target="_blank" rel="noopener">Open raw</a>
-              </div>
-            </div>
-            <div id="experiments-tex-content" class="tex-content small-muted">Loading Experiments...</div>
-          </div>
+          <div id="abstract-tex-content" class="tex-content">Loading abstract…</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- VIDEOS -->
-  <section class="section" id="videos">
+  <!-- Experiments -->
+  <section class="section" id="experiments">
     <div class="container">
-      <h2>Videos</h2>
-      <div class="grid grid-2" style="margin-top:12px">
-        <div class="card">
-          <video controls preload="metadata" playsinline>
-            <source src="videos/Town12_radar_HazardAtSideLaneTwoWays.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <div style="margin-top:8px;color:var(--muted)">Hazard at Side Lane (Two Ways)</div>
-        </div>
+      <h2>Experiments</h2>
 
-        <div class="card">
-          <video controls preload="metadata" playsinline>
-            <source src="videos/Town12_radar_StaticCutIn.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <div style="margin-top:8px;color:var(--muted)">Static Cut-In</div>
+      <div class="abstract-content">
+        <div class="tex-card">
+          <div class="tex-title">
+            <span>Experiments (from <code>chapter/Experiments.tex</code>)</span>
+            <div class="tex-actions">
+              <a class="btn btn-secondary" href="chapter/Experiments.tex" target="_blank" rel="noopener">Open raw</a>
+            </div>
+          </div>
+          <div id="experiments-tex-content" class="tex-content">Loading experiments…</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- VISUALIZATION -->
+  <!-- Visualization (images & videos) -->
   <section class="section" id="visualization">
     <div class="container">
-      <h2>Data Visualization</h2>
-      <p style="color:var(--muted);margin-bottom:12px">
-        Explore interactive visualization tools and example dashboards for TaCarla on GitHub:
-        <a href="https://github.com/atg93/TaCarla-Visualization" target="_blank" rel="noopener">https://github.com/atg93/TaCarla-Visualization</a>
+      <h2>Visualization</h2>
+
+      <p class="small-muted">
+        Explore interactive visualization tools and example dashboards for TaCarla:
+        <a href="https://github.com/atg93/TaCarla-Visualization" target="_blank" rel="noopener">TaCarla-Visualization (GitHub)</a>
       </p>
 
       <div class="figure-container">
         <div class="image-container">
           <img src="images/bev.png" alt="BEV Visualization" class="research-figure" loading="lazy" data-full="images/bev.png">
         </div>
-        <div class="figure-caption"><strong>BEV Visualization</strong> — open full size by clicking the image.</div>
+        <div class="figure-caption"><strong>BEV Visualization</strong> — click to open full size.</div>
       </div>
 
       <div class="figure-container">
         <div class="image-container">
           <img src="images/front.png" alt="Front Camera Visualization" class="research-figure" loading="lazy" data-full="images/front.png">
         </div>
-        <div class="figure-caption"><strong>Front Camera</strong></div>
+        <div class="figure-caption"><strong>Front Camera View</strong></div>
       </div>
-    </div>
-  </section>
 
-  <!-- CITATION -->
-  <section class="section" id="citation">
-    <div class="container">
-      <h2>Citation</h2>
-      <div class="card citation-box">
-        <pre id="citation-text" style="margin:0;font-family:ui-monospace,monospace">
-@inproceedings{2025tacarla,
-  title   = {TaCarla: A comprehensive benchmarking dataset for end-to-end autonomous driving},
-  author  = {TaCarla Research Team},
-  year    = {2025}
-}
-        </pre>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-left:12px">
-          <button class="copy-btn" id="copyCitation">📋 Copy Citation</button>
-          <a href="#download" class="btn btn-secondary" style="text-align:center">📥 Download Bib</a>
+      <!-- Example video placeholders (update paths as needed) -->
+      <div class="video-grid">
+        <div class="video-card">
+          <h4>Front View Demonstration</h4>
+          <video controls preload="metadata" playsinline>
+            <source src="videos/front_demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div class="video-card">
+          <h4>BEV / Multi-View Demo</h4>
+          <video controls preload="metadata" playsinline>
+            <source src="videos/bev_demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Results / Tables (placeholder - keep content simple) -->
+  <section class="section" id="results">
+    <div class="container">
+      <h2>Results</h2>
+
+      <div class="table-responsive">
+        <table class="performance-table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Sensor</th>
+              <th>DET<sub>l</sub></th>
+              <th>TOP<sub>ll</sub></th>
+              <th>OLS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Baseline</td>
+              <td>C</td>
+              <td>28.5</td>
+              <td>21.7</td>
+              <td>44.1</td>
+            </tr>
+            <tr class="highlight">
+              <td><strong>TaCarla (Ours)</strong></td>
+              <td><strong>C + L</strong></td>
+              <td><strong>47.3</strong></td>
+              <td><strong>35.5</strong></td>
+              <td><strong>56.4</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conclusion -->
+  <section class="section" id="conclusion">
+    <div class="container">
+      <h2>Conclusion</h2>
+      <div class="conclusion-content">
+        <p>
+          TaCarla provides a large-scale dataset for end-to-end autonomous driving research with multi-sensor support (camera, BEV, LiDAR-ready).
+          The dataset is designed to support perception, planning, and prediction tasks across diverse Leaderboard 2.0 scenarios.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Citation -->
+  <section class="section" id="citation">
+    <div class="container">
+      <h2>Citation</h2>
+      <div class="citation-box">
+        <pre id="citation-text">@inproceedings{2025tacarla,
+  title   = {TaCarla: A comprehensive benchmarking dataset for end-to-end autonomous driving},
+  author  = {TaCarla Research Team},
+  year    = {2025}
+}</pre>
+        <button class="copy-btn" id="copyCitation">📋 Copy Citation</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <p>© 2025 TaCarla Team</p>
@@ -212,120 +192,51 @@
     </div>
   </footer>
 
+  <!-- Image modal -->
   <div id="imageModal" class="image-modal" role="dialog" aria-hidden="true">
-    <div class="close-modal" id="closeModal" title="Close">&times;</div>
+    <button class="close-modal" id="closeModal" aria-label="Close image modal">&times;</button>
     <img id="modalImage" src="" alt="Full size" />
   </div>
 
+  <!-- Script (external file) -->
+  <script src="script.js"></script>
+
+  <!-- Inline fallback script for critical behaviors when script.js is not loaded -->
   <script>
-    /* Image modal handlers */
-    document.querySelectorAll('img[data-full]').forEach(img => {
-      img.style.cursor = 'zoom-in';
-      img.addEventListener('click', () => {
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        modalImg.src = img.dataset.full || img.src;
-        modal.classList.add('active');
-        modal.setAttribute('aria-hidden', 'false');
+    // Basic behaviors in case script.js hasn't loaded yet.
+    (function(){
+      // image modal fallback
+      document.querySelectorAll('img[data-full]').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+          const modal = document.getElementById('imageModal');
+          const modalImg = document.getElementById('modalImage');
+          modalImg.src = img.dataset.full || img.src;
+          modal.classList.add('active');
+          modal.setAttribute('aria-hidden', 'false');
+        });
       });
-    });
-    document.getElementById('closeModal').addEventListener('click', () => {
-      const modal = document.getElementById('imageModal');
-      modal.classList.remove('active');
-      modal.setAttribute('aria-hidden', 'true');
-      document.getElementById('modalImage').src = '';
-    });
-    document.getElementById('imageModal').addEventListener('click', (e) => {
-      if (e.target.id === 'imageModal') {
-        e.currentTarget.classList.remove('active');
-        e.currentTarget.setAttribute('aria-hidden', 'true');
-        document.getElementById('modalImage').src = '';
-      }
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
+      const closeModal = document.getElementById('closeModal');
+      if (closeModal) closeModal.addEventListener('click', () => {
         const modal = document.getElementById('imageModal');
-        if (modal.classList.contains('active')) {
-          modal.classList.remove('active');
-          modal.setAttribute('aria-hidden', 'true');
-          document.getElementById('modalImage').src = '';
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.getElementById('modalImage').src = '';
+      });
+
+      // copy citation fallback
+      const copyBtn = document.getElementById('copyCitation');
+      if (copyBtn) copyBtn.addEventListener('click', async () => {
+        const text = document.getElementById('citation-text').innerText.trim();
+        try {
+          await navigator.clipboard.writeText(text);
+          copyBtn.textContent = '✅ Copied!';
+          setTimeout(() => copyBtn.textContent = '📋 Copy Citation', 1500);
+        } catch (err) {
+          alert('Could not copy to clipboard. Here is the citation:\\n\\n' + text);
         }
-      }
-    });
-
-    /* Copy citation */
-    document.getElementById('copyCitation').addEventListener('click', async () => {
-      const text = document.getElementById('citation-text').innerText.trim();
-      try {
-        await navigator.clipboard.writeText(text);
-        const btn = document.getElementById('copyCitation');
-        btn.textContent = '✅ Copied!';
-        setTimeout(() => btn.textContent = '📋 Copy Citation', 1500);
-      } catch (err) {
-        alert('Could not copy to clipboard. Here is the citation:\n\n' + text);
-      }
-    });
-
-    /* Generic loader for .tex files in chapter/ folder
-       - path: relative path to file (e.g., 'chapter/Abstract.tex')
-       - options: try to extract environment or section if provided
-    */
-    async function loadTexToElement(path, elementId, options = {}) {
-      const targetEl = document.getElementById(elementId);
-      if (!targetEl) return;
-      targetEl.textContent = 'Loading...';
-      try {
-        const resp = await fetch(path);
-        if (!resp.ok) throw new Error(resp.status + ' ' + resp.statusText);
-        let text = await resp.text();
-
-        // If user requested a specific LaTeX environment to extract, try that first.
-        if (options.env) {
-          const envRe = new RegExp('\\\\\\begin\\{' + options.env + '\\}([\\s\\S]*?)\\\\\\end\\{' + options.env + '\\}', 'm');
-          const m = text.match(envRe);
-          if (m && m[1].trim()) text = m[1].trim();
-        }
-
-        // If user requested to extract by section title (e.g., 'Experiments'), try to extract
-        // \section{Experiments} ... until next \section or \chapter or end-of-file.
-        if (options.section) {
-          // Allow starred/unstarred: \section or \section*
-          const secRe = new RegExp('\\\\section\\*?\\{\\s*' + options.section.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '\\s*\\}([\\s\\S]*?)(?=\\\\section\\*?\\{|\\\\chapter\\*?\\{|$)', 'm');
-          const sm = text.match(secRe);
-          if (sm && sm[1].trim()) text = sm[1].trim();
-        }
-
-        // Simple stripping of some LaTeX commands (heuristic).
-        let display = text
-          .replace(/%[^\n]*/g, '')                      // remove line comments
-          .replace(/\\cite\{[^\}]*\}/g, '')            // remove \cite{...}
-          .replace(/\\ref\{[^\}]*\}/g, '')             // remove \ref{...}
-          .replace(/\\label\{[^\}]*\}/g, '')           // remove \label{...}
-          .replace(/\\(begin|end)\{[^\}]*\}/g, '')     // remove begin/end env tags
-          .replace(/\\paragraph\*?\{[^\}]*\}/g, '')    // remove paragraphs
-          .replace(/\\[a-zA-Z]+\*?(?:\[[^\]]*\])?(?:\{[^\}]*\})?/g, '') // drop other commands like \emph{...}
-          .replace(/\$\$?([\s\S]*?)\$\$?/g, '')        // drop simple inline/display math
-          .replace(/\{\s*\}/g, '')                     // cleanup empty braces
-          .trim();
-
-        if (!display) display = '(Content empty after removing LaTeX commands — check the source file.)';
-        targetEl.textContent = display;
-      } catch (err) {
-        targetEl.textContent = 'Error loading ' + path + ': ' + err.message + '\n(Confirm the file exists at that path and is served by your webserver.)';
-      }
-    }
-
-    // Load Abstract.tex from chapter/ folder. Prefer extracting abstract environment if present.
-    loadTexToElement('chapter/Abstract.tex', 'abstract-tex-content', { env: 'abstract' });
-
-    // Load Experiments.tex from chapter/ folder. Try to extract a "Experiments" \section if present,
-    // otherwise fall back to file content.
-    loadTexToElement('chapter/Experiments.tex', 'experiments-tex-content', { section: 'Experiments' });
-
-    // If the filenames are slightly different or in another case, you can also call:
-    // loadTexToElement('chapter/abstract.tex', 'abstract-tex-content', { env: 'abstract' });
-    // loadTexToElement('chapter/experiments.tex', 'experiments-tex-content', { section: 'Experiments' });
-
+      });
+    })();
   </script>
 </body>
 </html>
