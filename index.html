@@ -26,16 +26,14 @@
     .results-table th, .results-table td { border: 1px solid #ddd; padding: 8px; text-align: center; }
     .results-table thead th { background: #f6f8fb; }
     .citation-box { background:#f9fbff; border:1px solid #e6eefc; padding:12px; border-radius:8px; }
-    .image-modal, .pdf-modal { display:none; position:fixed; inset:0; background: rgba(0,0,0,0.75); align-items:center; justify-content:center; z-index:9999; }
-    .image-modal.active, .pdf-modal.active { display:flex; }
-    .image-modal img, .pdf-modal iframe { max-width:90%; max-height:90%; border-radius:6px; }
+    .image-modal { display:none; position:fixed; inset:0; background: rgba(0,0,0,0.75); align-items:center; justify-content:center; z-index:9999; }
+    .image-modal.active { display:flex; }
+    .image-modal img { max-width:90%; max-height:90%; border-radius:6px; }
     .close-modal { position:absolute; top:20px; right:26px; font-size:34px; color:#fff; cursor:pointer; }
     .small-muted { color:#666; font-size:0.9rem; }
     .content-card { background:#fff; border:1px solid #eee; padding:14px; border-radius:8px; }
     .card-title { font-weight:600; margin-bottom:8px; }
     .pdf-embed-thumb { width:100%; max-width:900px; height:420px; border:1px solid #e6e6e6; border-radius:6px; overflow:hidden; background:#fff; display:flex; align-items:center; justify-content:center; }
-    .pdf-embed-controls { margin-top:8px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
-    a.pdf-link { color:#2563eb; text-decoration:underline; }
     /* Responsive tweaks */
     @media (max-width:720px){
       .hero-title { font-size:1.6rem; }
@@ -303,31 +301,12 @@ To support end-to-end autonomous driving research, we have collected a new datas
           improving detection and representation of elongated and thin polyline structures.
         </p>
 
-        <!-- PDF embed (BEV) -->
+        <!-- BEV as PNG image (now) -->
         <figure class="figure" id="fig:bev_samples">
-          <figcaption style="margin-bottom:8px;">
-            <strong>Bird's Eye View (BEV)</strong> — GT (ground truth), Pred (predictions), and overlay (GT + Pred).
-          </figcaption>
-
-          <!-- Thumbnail / embed area: object tag will try to display the PDF inline.
-               Some browsers block inline PDFs depending on server headers; we provide fallback links. -->
-          <div class="pdf-embed-thumb" role="region" aria-label="BEV PDF preview">
-            <object id="bevPdfObject" data="figures/bev_tacarla.pdf" type="application/pdf" width="100%" height="100%">
-              <!-- Fallback content if embed/object not supported -->
-              <div style="padding:16px;text-align:center;">
-                <p>Preview unavailable. <a class="pdf-link" href="figures/bev_tacarla.pdf" target="_blank" rel="noopener">Open BEV PDF in a new tab</a> or <a class="pdf-link" href="figures/bev_tacarla.pdf" download>download the PDF</a>.</p>
-              </div>
-            </object>
-          </div>
-
-          <div class="pdf-embed-controls">
-            <button class="btn btn-primary" id="openBevModal">🔎 Open PDF Viewer</button>
-            <a class="btn btn-secondary" href="figures/bev_tacarla.pdf" target="_blank" rel="noopener">Open in new tab</a>
-            <a class="btn btn-secondary" href="figures/bev_tacarla.pdf" download>Download PDF</a>
-          </div>
-
-          <figcaption style="margin-top:8px;font-size:0.95rem;color:#555;">
-            If the inline preview does not render in your browser, use "Open in new tab" or "Download PDF".
+          <img src="figures/bev_tacarla.png" alt="BEV results showing GT, Pred and overlay GT+Pred" data-full="figures/bev_tacarla.png" style="width:100%;max-width:900px;cursor:zoom-in;">
+          <figcaption>
+            Bird's Eye View (BEV) results demonstrating the performance of TopoBDA on the TaCarla dataset. <em>GT</em> denotes the ground truth,
+            and <em>Pred</em> denotes the predictions. <em>GT + Pred</em> shows the overlaid results of both.
           </figcaption>
         </figure>
 
@@ -547,63 +526,14 @@ To support end-to-end autonomous driving research, we have collected a new datas
     </div>
   </footer>
 
-  <!-- PDF modal (for larger PDF viewing) -->
-  <div id="pdfModal" class="pdf-modal" role="dialog" aria-hidden="true">
-    <div class="close-modal" id="closePdfModal" title="Close">&times;</div>
-    <iframe id="pdfModalIframe" src="" style="width:90%;height:90%;border:0;border-radius:6px;" title="PDF viewer"></iframe>
-  </div>
-
-  <!-- Image modal (existing image modal kept) -->
+  <!-- Image modal -->
   <div id="imageModal" class="image-modal" role="dialog" aria-hidden="true">
     <div class="close-modal" id="closeModal" title="Close">&times;</div>
     <img id="modalImage" src="" alt="Full size" />
   </div>
 
-  <!-- Inline script: PDF modal + image modal + copy citation -->
+  <!-- Inline script: image modal + copy citation -->
   <script>
-    // PDF modal logic
-    (function(){
-      const openBtn = document.getElementById('openBevModal');
-      const pdfModal = document.getElementById('pdfModal');
-      const closePdf = document.getElementById('closePdfModal');
-      const iframe = document.getElementById('pdfModalIframe');
-      const pdfPath = 'figures/bev_tacarla.pdf';
-
-      if (openBtn){
-        openBtn.addEventListener('click', ()=>{
-          iframe.src = pdfPath;
-          pdfModal.classList.add('active');
-          pdfModal.setAttribute('aria-hidden','false');
-          document.body.style.overflow = 'hidden';
-        });
-      }
-      if (closePdf){
-        closePdf.addEventListener('click', ()=>{
-          pdfModal.classList.remove('active');
-          pdfModal.setAttribute('aria-hidden','true');
-          iframe.src = '';
-          document.body.style.overflow = '';
-        });
-      }
-      document.addEventListener('keydown', (e)=>{ if (e.key==='Escape'){
-        if (pdfModal && pdfModal.classList.contains('active')){
-          pdfModal.classList.remove('active');
-          pdfModal.setAttribute('aria-hidden','true');
-          iframe.src = '';
-          document.body.style.overflow = '';
-        }
-      }});
-      // clicking outside iframe closes modal
-      pdfModal.addEventListener('click', (e)=>{
-        if (e.target === pdfModal){
-          pdfModal.classList.remove('active');
-          pdfModal.setAttribute('aria-hidden','true');
-          iframe.src = '';
-          document.body.style.overflow = '';
-        }
-      });
-    })();
-
     // image modal
     (function(){
       document.querySelectorAll('img[data-full]').forEach(img=>{
