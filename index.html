@@ -119,63 +119,57 @@ To support end-to-end autonomous driving research, we have collected a new datas
     </div>
   </section>
 
-  <!-- Study Highlights -->
+  <!-- Study Highlights (updated to five items per user) -->
   <section class="section" id="study-highlights">
     <div class="container">
       <h2>Study Highlights</h2>
       <div class="highlights-grid" role="list">
+
         <div class="highlight-card" role="listitem">
           <div class="highlight-icon">📦</div>
           <div class="highlight-body">
-            <h3>Largest CARLA Leaderboard Dataset</h3>
-            <p>Over <strong>2.85 million frames</strong> from CARLA Leaderboard 2.0 scenarios — to our knowledge the largest dataset covering perception and planning together.</p>
+            <h3>Largest Dataset</h3>
+            <p>It is the largest dataset collected for the CARLA Leaderboard 2.0 challenge — designed to cover diverse scenarios and long-tail events.</p>
           </div>
         </div>
 
         <div class="highlight-card" role="listitem">
-          <div class="highlight-icon">🧩</div>
+          <div class="highlight-icon">🏁</div>
           <div class="highlight-body">
-            <h3>Multi-task & Multi-modal</h3>
-            <p>Supports dynamic object detection, lane divider & centerline detection, traffic light recognition and trajectory prediction with camera-only and camera+LiDAR setups.</p>
+            <h3>Benchmark</h3>
+            <p>Provides benchmark tasks for multiple autonomous-driving problems: <strong>object detection</strong>, <strong>lane detection</strong>, <strong>traffic light detection</strong>, and <strong>planning</strong>.</p>
           </div>
         </div>
 
         <div class="highlight-card" role="listitem">
-          <div class="highlight-icon">🎯</div>
+          <div class="highlight-icon">📝</div>
           <div class="highlight-body">
-            <h3>Long-tail Scenario Coverage</h3>
-            <p>Scenarios selected for long-tail events (accident, construction, emergency, hazards, opposite direction, etc.) to improve robustness on rare cases.</p>
+            <h3>Text</h3>
+            <p>Per-frame textual descriptions that explain the current situation of the ego vehicle (e.g., lane, speed, nearby hazards) to support behavior understanding and language-conditioned tasks.</p>
           </div>
         </div>
 
         <div class="highlight-card" role="listitem">
-          <div class="highlight-icon">🔬</div>
+          <div class="highlight-icon">📊</div>
           <div class="highlight-body">
-            <h3>Benchmarked Baselines</h3>
-            <p>Benchmarked strong baselines (BEV detectors, Transfuser, DiffusionDrive, PlanT) and provided open-loop & closed-loop evaluations.</p>
+            <h3>Score</h3>
+            <p>A scene-level rarity score that measures how rare/unique the current scene is in the dataset — useful for curriculum learning and focused evaluation on rare events.</p>
           </div>
         </div>
 
         <div class="highlight-card" role="listitem">
-          <div class="highlight-icon">🔁</div>
+          <div class="highlight-icon">💾</div>
           <div class="highlight-body">
-            <h3>Standardized Temporal Resolution</h3>
-            <p>Downsampled original 10Hz data to 2Hz to align with nuScenes-style keyframes and common evaluation pipelines.</p>
+            <h3>Parquet data format</h3>
+            <p>All annotations and extracted features are provided in Parquet format for faster training & I/O performance and smooth integration with data pipelines.</p>
           </div>
         </div>
 
-        <div class="highlight-card" role="listitem">
-          <div class="highlight-icon">📈</div>
-          <div class="highlight-body">
-            <h3>Research & Validation Ready</h3>
-            <p>Designed for both offline training/analysis and closed-loop validation on CARLA Leaderboard V2 — useful for training, testing and behavior analysis.</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIMENTS (3D detection, lane, traffic light, planning) -->
+  <!-- EXPERIMENTS -->
   <section class="section" id="experiments">
     <div class="container">
       <h2 id="sec:experiments">Experiments</h2>
@@ -226,13 +220,11 @@ To support end-to-end autonomous driving research, we have collected a new datas
           </div>
         </figure>
 
-        <!-- BEV figure from figures/ (user requested figures folder included) -->
         <figure class="figure" id="fig:bev_samples">
           <img src="figures/bev_tacarla.png" alt="BEV results (figures/bev_tacarla.png)" data-full="figures/bev_tacarla.png" style="width:100%;max-width:900px;cursor:zoom-in;border-radius:6px;">
           <figcaption>Bird's Eye View (BEV) results — GT, Pred and overlay (image loaded from <code>figures/bev_tacarla.png</code>).</figcaption>
         </figure>
 
-        <!-- traffic light samples (images/) and larger display -->
         <figure class="figure tl-samples" role="group" aria-label="Traffic light model outputs">
           <img src="images/tl_red.jpg" alt="Traffic light red example (images/tl_red.jpg)" data-full="images/tl_red.jpg">
           <img src="images/tl_green.jpg" alt="Traffic light green example (images/tl_green.jpg)" data-full="images/tl_green.jpg">
@@ -260,7 +252,6 @@ To support end-to-end autonomous driving research, we have collected a new datas
       <article class="experiment-block" id="planning">
         <h3>Planning</h3>
 
-        <!-- planning figure from figures/ (user requested figures folder included) -->
         <figure class="figure">
           <img src="figures/planning.png" alt="Planning comparison (figures/planning.png)" data-full="figures/planning.png" style="width:100%;max-width:900px;border-radius:6px;">
           <figcaption>Waypoints from ground truth, PlanT, Transfuser, and DiffusionDrive (image loaded from <code>figures/planning.png</code>).</figcaption>
